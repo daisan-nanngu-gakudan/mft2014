@@ -5,6 +5,7 @@
 void ofApp::setup(){
     
     ofSetFrameRate(30);
+    ofBackground(COLOR_BACKGROUND);
     
     // Window Title for help
     ofSetWindowTitle(ofToString(winSize[0]) +  " " +  ofToString(winSize[1]));
@@ -12,7 +13,8 @@ void ofApp::setup(){
     bUseSensor = true;
     bAnimate = true;
     bFade = true;
-
+    bShowMenu = true;
+    
     desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
     
     bike.setup();
@@ -50,7 +52,7 @@ void ofApp::update(){
 void ofApp::draw(){
 
     ofPushMatrix();
-
+    
     setupSpaces(); // 座標系
     showGuide(); // ガイド
 
@@ -73,6 +75,7 @@ void ofApp::draw(){
     ofPopMatrix();
     
     showDebug();
+    if(bShowMenu) showMenu();
 
     // debug
     ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));

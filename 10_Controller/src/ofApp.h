@@ -33,6 +33,7 @@ class ofApp : public ofBaseApp{
         Desktop desktop;
     
         void showDebug();
+        void showMenu();
         void showGuide();
         void setupSpaces();
 
@@ -40,6 +41,7 @@ class ofApp : public ofBaseApp{
         bool bAnimate;
         bool bFade;
         bool bUseSensor;
+        bool bShowMenu;
         bool bSendMode;
         bool bNeedSending;  // 送信メッセージあり
     

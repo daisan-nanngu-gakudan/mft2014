@@ -13,11 +13,13 @@ void ofApp::setupSpaces(){
 }
 
 
-
-
 //--------------------------------------------------------------
 // showDebug
 // - デバッグ情報を表示します
+//   1.スピード
+//   2.ハンドル角(-1.0 - 1.0)
+//   3.方角(ラジアン値)
+//   4.位置
 
 void ofApp::showDebug(){
     
@@ -26,30 +28,69 @@ void ofApp::showDebug(){
     float sp = b->_speed;
     float st = b->_steer;
     
-    //
-    // speed 0.  and steer -1.0 .. 1.0
-    //
-    stringstream s1, s2;
-    for (int i = 0 ; i < 10; i++){
-        s1 << (sp * 10 > i ? '*' : '-') ;
-    }
-    s1 << " .. "  << ofToString(sp, 2) << endl;
+    stringstream s1, s2, s3, s4;
     
-    int stRounded = round( ofMap(st, -1, 1, 0, 10) );
-    for (int i = 0 ; i < 10; i++){
-        s2 << (stRounded == i ? '|' : '-') ;
-    }
-    s2 << " .. "  << ofToString(st, 2) << endl;
+    // speed
+    s1 << "speed     :  " << ofToString(sp, 2) << "    ";
+    for (int i = 0 ; i < 40; i++) s1 << (sp * 10 > i ? '*' : '-') ;
+    
+    // steer
+    int stRounded = round( ofMap(st, -1, 1, 0, 20) );
+    s2 << "steer     : " << (st < 0 ?'-':' ')
+                        << ofToString(abs(st), 2) << "    ";
+    for (int i = 0 ; i < 21; i++) s2 << (stRounded == i ? '|' : '-') ;
+    
+    
+    //  direction (radian)
+    s3 << "direction : " << (b->_direction < 0 ?'-':' ')
+                         << ofToString(abs(b->_direction), 2)  << endl;
+    s4 << "position  : " << (b->_location.x < 0 ?'-':' ')
+                         <<  ofToString(abs(b->_location.x), 0) << ", "
+                         << (b->_location.y < 0 ?'-':' ')
+                         <<  ofToString(abs(b->_location.y), 0) << endl;
+    
+    // desktop size info
+    stringstream s5, s6;
+    s5 << "Desktop Size : " << desktop._size.x << ", "
+                            << desktop._size.y << endl;
+    s6 << "Desktop Pos  : " << desktop._p.x << ", "
+                            << desktop._p.y << endl;
     
     
     ofPushStyle();
-    
     ofSetColor(COLOR_DEBUGINFO);
-    ofDrawBitmapString(s1.str(), 20, 20);
-    ofDrawBitmapString(s2.str(), 20, 40);
+    ofDrawBitmapString(s1.str(), 20, 20);   // speed
+    ofDrawBitmapString(s2.str(), 20, 36);   // steer -1..1.
+    ofDrawBitmapString(s3.str(), 20, 52);   // dir(rad)
+    ofDrawBitmapString(s4.str(), 20, 68);   // position (x,y)
     
+    ofDrawBitmapString(s5.str(), 20, 84);   // size (x,y)
+    ofDrawBitmapString(s6.str(), 20, 100);  // position (x,y)
     ofPopStyle();
+    
 }
+
+//--------------------------------------------------------------
+// showMenu
+// - 座標系を表現するガイドを表示します
+// - X, Y軸の正方向を太線とする
+
+void ofApp::showMenu(){
+    stringstream s1;
+
+    s1 <<      "KEYS / / / / / / / / / / / / / / / / / / / "
+    << endl << "    SPACE . " "Ticks on/off"
+    << endl << "     DOWN . " "Stop the bike."
+    << endl << "        a . " "Restarts the bike with the origin."
+    << endl << "        1 . " "Reset steer."
+    << endl << "        / . " "OSC test send."
+    << endl << "        ? . " "Show/hide this Menu."
+    << endl << "/ / / / / / / / / / / / / / / / / / / / / / "
+    << endl;
+    
+    ofDrawBitmapString(s1.str(), ofGetWidth()/2-165, 140);
+}
+
 
 //--------------------------------------------------------------
 // showGuide

@@ -155,7 +155,7 @@ void Bike::report(){
 void Bike::setupCropSettings(ofVec2f corner1, ofVec2f corner2){
     _cropBegin.x = corner1.x;
     _cropBegin.y = corner1.y;
-    _cropEnd.x = corner1.x + corner2.x;
-    _cropEnd.y = corner1.y + corner2.y;
+    _cropEnd.x   = corner2.x;
+    _cropEnd.y   = corner2.y;
 };
 

@@ -40,7 +40,9 @@ void ofApp::keyPressed(int key){
             bNeedSending = true;
             cout << "OSC Sending Toggled to [" << bNeedSending << "]" << endl;
             break;
-            
+        case '?':
+            bShowMenu = !bShowMenu;
+            break;
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         default:
             break;

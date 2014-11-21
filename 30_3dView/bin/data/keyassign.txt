@@ -1,2 +1,3 @@
-[ f ] toggle fullscreen
-[ h ] toggle oculus view/normal view
+[ F ] toggle fullscreen
+[ H ] toggle oculus view/normal view
+[ D ] toggle debug mode

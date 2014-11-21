@@ -11,7 +11,7 @@
 		647F8CA1199A793F006A51EB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647F8CA0199A793F006A51EB /* CoreVideo.framework */; };
 		914C7FA11A17260100F14971 /* ofxOculusDK2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C7F4A1A17260000F14971 /* ofxOculusDK2.cpp */; };
 		914C7FD11A1727A600F14971 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C7FCD1A1727A600F14971 /* main.cpp */; };
-		914C7FD21A1727A600F14971 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C7FCF1A1727A600F14971 /* ofApp.cpp */; };
+		914C7FD21A1727A600F14971 /* ofApp.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C7FCF1A1727A600F14971 /* ofApp.hpp */; };
 		914C80191A1727C500F14971 /* ofxPostGlitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C80141A1727C500F14971 /* ofxPostGlitch.cpp */; };
 		914C802D1A172B5C00F14971 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C80261A172B5C00F14971 /* tinyxml.cpp */; };
 		914C802E1A172B5C00F14971 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 914C80281A172B5C00F14971 /* tinyxmlerror.cpp */; };
@@ -133,8 +133,7 @@
 		914C7FCC1A1727A600F14971 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		914C7FCD1A1727A600F14971 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		914C7FCE1A1727A600F14971 /* MyDesktop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MyDesktop.hpp; sourceTree = "<group>"; };
-		914C7FCF1A1727A600F14971 /* ofApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofApp.cpp; sourceTree = "<group>"; };
-		914C7FD01A1727A600F14971 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofApp.h; sourceTree = "<group>"; };
+		914C7FCF1A1727A600F14971 /* ofApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ofApp.hpp; sourceTree = "<group>"; };
 		914C80141A1727C500F14971 /* ofxPostGlitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPostGlitch.cpp; sourceTree = "<group>"; };
 		914C80151A1727C500F14971 /* ofxPostGlitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPostGlitch.h; sourceTree = "<group>"; };
 		914C80261A172B5C00F14971 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -742,8 +741,7 @@
 			children = (
 				914C7FCC1A1727A600F14971 /* common.h */,
 				914C7FCD1A1727A600F14971 /* main.cpp */,
-				914C7FCF1A1727A600F14971 /* ofApp.cpp */,
-				914C7FD01A1727A600F14971 /* ofApp.h */,
+				914C7FCF1A1727A600F14971 /* ofApp.hpp */,
 				914C80231A172AB900F14971 /* Stages */,
 			);
 			path = src;
@@ -870,7 +868,7 @@
 				916393C91A1FB17F00DD8401 /* ofxUIWidgetWithLabel.cpp in Sources */,
 				916393BF1A1FB17F00DD8401 /* ofxUISpectrum.cpp in Sources */,
 				916393BD1A1FB17F00DD8401 /* ofxUISortableList.cpp in Sources */,
-				914C7FD21A1727A600F14971 /* ofApp.cpp in Sources */,
+				914C7FD21A1727A600F14971 /* ofApp.hpp in Sources */,
 				916393A31A1FB17F00DD8401 /* ofxUICanvas.cpp in Sources */,
 				916393A51A1FB17F00DD8401 /* ofxUIDragableLabelButton.cpp in Sources */,
 				916393BA1A1FB17F00DD8401 /* ofxUIRotarySlider.cpp in Sources */,

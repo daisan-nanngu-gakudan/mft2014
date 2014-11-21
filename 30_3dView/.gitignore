@@ -1,0 +1,11 @@
+##########
+# xcode 
+##########
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/default.*
+*/*xcodeproj/*.xcworkspace/
+*/*.xcodeproj/xcshareddata/
+*/*.xcodeproj/xcuserdata/
+*.app
+

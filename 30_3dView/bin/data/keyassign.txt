@@ -1,0 +1,2 @@
+[ f ] toggle fullscreen
+[ h ] toggle oculus view/normal view

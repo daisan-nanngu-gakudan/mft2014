@@ -8,7 +8,7 @@
 #define RECV_PORT 12022
 #define NUM_MSG_STRINGS 20
 
-// ダミー画面のサイズ(アプリの性格上、とくに意味はない)
+// ダミー画面のサイズ(デバッグ情報の表示に利用するのみ)
 #define DISP_SIZE_X 320
 #define DISP_SIZE_Y 240
 

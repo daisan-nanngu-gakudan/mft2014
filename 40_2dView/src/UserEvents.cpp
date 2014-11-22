@@ -23,9 +23,10 @@ void ofApp::keyPressed(int key){
             mp.bSelfUpdate = bDebugMode;
             break;
         case 'a':
-            break;
-        case '1':
             mp.reset();
+            break;
+        case '0':
+            mp.resetHandle();
             break;
         default:
             break;

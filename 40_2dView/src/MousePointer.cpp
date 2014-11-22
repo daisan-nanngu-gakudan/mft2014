@@ -36,7 +36,7 @@ void MousePointer::update() {
         _location.y += _speed * sin(_direction);
 
         // TODO : crop
-        // Util::crop(&_location, _cropBegin, _cropEnd);
+        Util::crop(&_location, _cropBegin, _cropEnd);
         
     } else {
        
@@ -53,6 +53,18 @@ void MousePointer::draw() {
     ofxMouseController::setPos(_location.x,
                                _location.y);
     
+}
+
+//--------------------------------------------------------------
+// setupCropSettings
+//
+//
+
+void MousePointer::setupCropSettings(ofVec2f corner1, ofVec2f corner2){
+    _cropBegin.x = corner1.x;
+    _cropBegin.y = corner1.y;
+    _cropEnd.x   = corner2.x;
+    _cropEnd.y   = corner2.y;
 }
 
 
@@ -183,8 +195,6 @@ void MousePointer::resetHandle() {
 void MousePointer::updateDirection() {
     
     if (bSelfUpdate) {
-
-        cout << "MousePointer::updateDirection()" << endl;
         
         _direction += ofMap(_steer, -1.0, 1.0, -PI/2 *0.1, PI/2 * 0.1);
         _direction = fmodf(_direction, TWO_PI);
@@ -192,3 +202,15 @@ void MousePointer::updateDirection() {
     }
     
 }
+
+//--------------------------------------------------------------
+// crop()
+// 座標sを、端点p1, 端点p2から作られる領域でクロッピングします。
+// 参照渡しによる、座標の更新を行います
+//
+void Util::crop(ofVec2f *s, const ofVec2f p1, const ofVec2f p2){
+    if (s->x > p2.x) {s->x = p1.x; cout << "croped! 1" << endl;}
+    if (s->x < p1.x) {s->x = p2.x; cout << "croped! 2" << endl;}
+    if (s->y > p2.y) {s->y = p1.y; cout << "croped! 3" << endl;}
+    if (s->y < p1.y) {s->y = p2.y; cout << "croped! 4" << endl;}
+};

@@ -7,17 +7,14 @@
 void ofApp::setupOsc(){
     
     cout << "listening for osc messages on port " << RECV_PORT << "\n";
+    
     receiver.setup(RECV_PORT);
-    
     current_msg_string = 0;
-    mouseX = 0;
-    mouseY = 0;
-    
-    ofBackground(30, 30, 130);
 }
 
 //--------------------------------------------------------------
-// UPDATE
+//  updateWithOsc // TODO
+//
 //
 void ofApp::updateWithOsc(){
 	// hide old messages

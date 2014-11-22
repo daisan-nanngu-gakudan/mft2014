@@ -15,7 +15,7 @@ void ofApp::drawInfo(){
     s1  << "- - mouse info - -" << endl
         << "speed     :  " << ofToString(mp._speed,2) << endl
         << "steer     : "  << (mp._steer < 0 ?'-':' ')
-                           << ofToString(mp._steer,2) << endl
+                           << ofToString(abs(mp._steer),2) << endl
         << "direction :  " << ofToString(mp._direction, 2) << endl
         << "location  :  " << ofToString(mp._location.x, 0) << ", "
                            << ofToString(mp._location.y, 0) << endl;

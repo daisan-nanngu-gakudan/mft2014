@@ -51,6 +51,8 @@ void Util::crop(ofVec2f *s, const ofVec2f p1, const ofVec2f p2){
 //
 void Bike::updateDirection(){
 	_direction += ofMap(_steer, -1.0, 1.0, -PI/2 *0.1, PI/2 * 0.1);
+    _direction = fmodf(_direction, TWO_PI);
+    if (_direction < 0) _direction += TWO_PI;
 }
 
 //--------------------------------------------------------------

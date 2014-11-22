@@ -10,10 +10,13 @@ void ofApp::keyPressed(int key){
             mp.pedal();
             break;
         case OF_KEY_DOWN:
+            mp.stop();
             break;
         case OF_KEY_LEFT:
+            mp.handle(-0.1);
             break;
         case OF_KEY_RIGHT:
+            mp.handle(+0.1);
             break;
         case ' ':
             bDebugMode = !bDebugMode;

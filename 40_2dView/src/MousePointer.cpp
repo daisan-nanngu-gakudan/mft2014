@@ -10,9 +10,10 @@ void MousePointer::setup(bool flag) {
     
     cout << "MousePointer::setup()" << endl;
     
-    _speed = 1.0;
-    
+    _speed = 1.0L;
     _location = ofVec2f(ORIGIN_X, ORIGIN_Y);
+    _steer = 0L;
+    _direction = 0L;
     
     bSelfUpdate = flag;
     
@@ -26,7 +27,17 @@ void MousePointer::setup(bool flag) {
 void MousePointer::update() {
     
     if (bSelfUpdate) {
-        _location.y++;
+        
+        // update direction
+        updateDirection();
+        
+        // update position
+        _location.x += _speed * cos(_direction);
+        _location.y += _speed * sin(_direction);
+
+        // TODO : crop
+        // Util::crop(&_location, _cropBegin, _cropEnd);
+        
     } else {
        
     }
@@ -39,8 +50,8 @@ void MousePointer::update() {
 
 void MousePointer::draw() {
     
-    ofxMouseController::setPos(_location.x * 3,
-                               _location.y * 3);
+    ofxMouseController::setPos(_location.x,
+                               _location.y);
     
 }
 
@@ -83,6 +94,12 @@ void MousePointer::resetLocation() {
     
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//
+//         B i k e - m o d e l - l i k e    A  P  I
+//
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 //--------------------------------------------------------------
 // pedal
 //
@@ -94,6 +111,33 @@ void MousePointer::pedal() {
         _speed += 0.1;
     }
     
+}
+
+//--------------------------------------------------------------
+// stop
+//
+//
+
+void MousePointer::stop() {
+    
+    _speed = 0L;
+    
+}
+
+//--------------------------------------------------------------
+// handle
+//
+//
+
+void MousePointer::handle(float norm) {
+    
+    if (bSelfUpdate) {
+        
+        _steer += norm;
+        
+        // clipping
+        _steer = ofClamp(_steer, -1.0, 1.0);
+    }
 }
 
 //--------------------------------------------------------------
@@ -114,7 +158,7 @@ void MousePointer::setHandle(float norm) {
 //
 
 void MousePointer::resetDirection() {
-
+    
     resetHandle();       // 下準備
     _direction = 0L;
     
@@ -139,6 +183,9 @@ void MousePointer::resetHandle() {
 void MousePointer::updateDirection() {
     
     if (bSelfUpdate) {
+
+        cout << "MousePointer::updateDirection()" << endl;
+        
         _direction += ofMap(_steer, -1.0, 1.0, -PI/2 *0.1, PI/2 * 0.1);
         _direction = fmodf(_direction, TWO_PI);
         if (_direction < 0) _direction += TWO_PI;

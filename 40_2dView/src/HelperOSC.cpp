@@ -64,8 +64,6 @@ void ofApp::updateWithOsc(){
         // pedal, steer
         // process for Mouse Pointer
         //
-        mp._speed = 1.0L;
-        mp._location = ofVec2f(0,0);
 
         dumpOSC(m);
     }

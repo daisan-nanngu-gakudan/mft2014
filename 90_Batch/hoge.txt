@@ -1,0 +1,7 @@
+/dump 1 23648_loofa_A_004.aif 189 170
+/dump 2 23649_loofa_A_005.aif 189 202
+/dump 3 23650_loofa_A_006.aif 189 234
+/dump 4 23651_loofa_A_007.aif 189 266
+/dump 5 23652_loofa_A_008.aif 369 266
+/dump 6 23653_loofa_A_009.aif 189 394
+exit with cleaning

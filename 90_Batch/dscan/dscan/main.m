@@ -2,7 +2,11 @@
 #import <ScriptingBridge/ScriptingBridge.h>
 #import "Finder.h"
 #define POLLING_INTERVAL 1
-#define FILTER_SUFFIX ".aif"
+#define FILTER_SUFFIX1 ".aif"
+#define FILTER_SUFFIX2 ".aiff"
+#define FILTER_SUFFIX3 ".wav"
+#define FILTER_SUFFIX4 ".mov"
+#define FILTER_SUFFIX5 ".txt"
 
 // prototypes
 NSMutableArray* getUnixPaths();
@@ -37,9 +41,11 @@ int main (int argc, const char * argv[]) {
 	
 	pool = [[NSAutoreleasePool alloc] init];
 	dict = [NSMutableDictionary dictionary];
-	
+	   
 	fprintf(stderr,
-            "starting up... this version of dscan(DesktopScanner) doesn't have network function.\n");
+            "[INFO]dscan(batch)\n"
+            "[INFO]...filters aif/aiff/wav/mov/txt\n"
+            "[INFO]starting up... this version of dscan(DesktopScanner) doesn't have network function.\n");
 	
 	// get desktop items' path
 	NSMutableArray* paths = getUnixPaths();
@@ -48,21 +54,7 @@ int main (int argc, const char * argv[]) {
 	// gets finder items and their position for first time.
 	NSArray* items = getFinderItemsViaSB(paths);
 	scanForDump(items);
-	
-	//
-	// main loop
-	//
-	while (TRUE) {
 		
-		// Differences!!!
-		// Scripting Bridge
-		
-		items = getFinderItemsViaSB(paths);
-		scanForUpdates(items);
-		
-		sleep(POLLING_INTERVAL);
-	}
-	
 	[items dealloc];
 	[pool drain];
 	
@@ -86,14 +78,25 @@ NSMutableArray* getUnixPaths(){
 	NSError*  error;
 	
 	// filter with certain extentions
-	NSString* theSuffix = @FILTER_SUFFIX;
+	NSString* theSuffix1 = @FILTER_SUFFIX1;
+    NSString* theSuffix2 = @FILTER_SUFFIX2;
+    NSString* theSuffix3 = @FILTER_SUFFIX3;
+    NSString* theSuffix4 = @FILTER_SUFFIX4;
+    NSString* theSuffix5 = @FILTER_SUFFIX5;
+    
 	NSMutableArray* outPaths = [[NSMutableArray alloc] init];
 	NSFileManager*  fileManager = [NSFileManager defaultManager];
 	
 	for (NSString *aPath in [fileManager contentsOfDirectoryAtPath: theDirectory error: &error]){
 		NSDictionary *attrs = [fileManager attributesOfItemAtPath: aPath error: &error];
         if( [NSFileTypeRegular compare:[attrs objectForKey: NSFileType] ]
-           && [aPath hasSuffix: theSuffix]){ [outPaths addObject: aPath]; }
+           && ([aPath hasSuffix: theSuffix1]
+                || [aPath hasSuffix: theSuffix2]
+                || [aPath hasSuffix: theSuffix3]
+                || [aPath hasSuffix: theSuffix4]
+                || [aPath hasSuffix: theSuffix5]
+               ))
+        { [outPaths addObject: aPath]; }
 	}
 	return outPaths;
 }
@@ -116,7 +119,7 @@ NSArray* getFinderItemsViaSB(NSMutableArray* unixPaths){
 }
 
 //
-// Finder Desktop上に存在しているすべてのaiffファイルの情報を標準出力に出力します
+// Finder Desktop上に存在しているすべての抽出対象ファイルの情報を標準出力に出力します
 //
 void scanForDump(NSArray* items){
 	
@@ -138,7 +141,7 @@ void scanForDump(NSArray* items){
 }
 
 //
-// Finder Desktopで座標に変更のあったaiffファイルの情報を標準出力に出力します
+// Finder Desktopで座標に変更のあった抽出対象ファイルの情報を標準出力に出力します
 //
 void scanForUpdates(NSArray* items){
 	
@@ -166,7 +169,6 @@ void scanForUpdates(NSArray* items){
 		
 	}
 }
-
 
 void setSigHandler(int signame){
 	if (signal(signame, exitWithCleaning) == SIG_ERR) exit(1);

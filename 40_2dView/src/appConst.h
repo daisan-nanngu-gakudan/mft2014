@@ -4,9 +4,9 @@
 #define ORIGIN_Y ofGetScreenHeight()/2
 
 // OSCタグ
-#define OSCA_SENSOR_PEDAL         "/pedal"
-#define OSCA_SENSOR_STEER         "/steerAngle"
-#define OSCA_SENSOR_STEER_RESET   "/steerReset"
+#define OSCA_SENSOR_PEDAL         "/dsng2/pedal"
+#define OSCA_SENSOR_STEER         "/dsng2/steerAngle"
+#define OSCA_SENSOR_STEER_RESET   "/dsng2/steerReset"
 
 #define OSCA_RENDERED_DIRECTION   "/dsng2/ctl/dir"
 #define OSCA_RENDERED_LOCATION_X  "/dsng2/ctl/px"

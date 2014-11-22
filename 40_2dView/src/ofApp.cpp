@@ -11,7 +11,7 @@ void ofApp::setup(){
     // OSC
     setupOsc();
     
-    bDebugMode = true;
+    bDebugMode = false;
     
     mp.setup(bDebugMode?true:false);
     mp.setupCropSettings(DESKTOPCORNER_BEGIN, DESKTOPCORNER_END);
@@ -22,11 +22,14 @@ void ofApp::setup(){
 void ofApp::update(){
     
     if (!bDebugMode) {
+        
         updateWithOsc();
-    }
-
-    mp.update();
+        
+    } else {
+        
+        mp.update();
     
+    }
 }
 
 //--------------------------------------------------------------
@@ -34,10 +37,8 @@ void ofApp::draw(){
 
     mp.draw();
     
-    if (bDebugMode) {
-        drawInfo();
-    }
-    
+    drawInfo();
+
 }
 
 

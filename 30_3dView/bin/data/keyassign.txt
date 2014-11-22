@@ -1,3 +1,4 @@
 [ F ] toggle fullscreen
 [ H ] toggle oculus view/normal view
 [ D ] toggle debug mode
+[ C ] toggle manual camera

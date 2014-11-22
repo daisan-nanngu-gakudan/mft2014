@@ -1,22 +1,76 @@
-<Canvas>
-    <Kind>40</Kind>
-    <Name>OFX_UI_WIDGET_CANVAS</Name>
-    <IsMinified>0</IsMinified>
-    <XPosition>0.000000000</XPosition>
-    <YPosition>0.000000000</YPosition>
-</Canvas>
 <Widget>
     <Kind>2</Kind>
     <Name>ENABLE_HMD_VIEW</Name>
-    <Value>1</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>ENABLE_FPS_CONTROLL</Name>
     <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>DUMP_OSC</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>MANUAL_CAMERA</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_X</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_Y</Name>
+    <Value>1054.187255859</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_Z</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_X</Name>
+    <Value>-91.330047607</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_Y</Name>
+    <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_Z</Name>
+    <Value>153.750000000</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>FPS_KEY</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>REMOTE_BIKE</Name>
     <Value>1</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>STEER</Name>
+    <Value>0.927083373</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>SPEED</Name>
+    <Value>1.541666627</Value>
+</Widget>
+<Widget>
+    <Kind>11</Kind>
+    <Name>LOCATION</Name>
+    <XValue>0.000000000</XValue>
+    <YValue>0.000000000</YValue>
+</Widget>
+<Widget>
+    <Kind>21</Kind>
+    <Name>DIRECTION</Name>
+    <Value>0.000000000</Value>
 </Widget>

@@ -40,6 +40,9 @@ void ofApp::keyPressed(int key){
             bNeedSending = true;
             cout << "OSC Sending Toggled to [" << bNeedSending << "]" << endl;
             break;
+        case 'd': // テスト送信実行
+            sendItems();
+            break;
         case '?':
             bShowMenu = !bShowMenu;
             break;

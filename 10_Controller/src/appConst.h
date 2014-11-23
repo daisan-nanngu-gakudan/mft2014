@@ -6,14 +6,16 @@ static int winSize[2] = {600, 800};
 
 // メッセージ送信間隔(ミリ秒) [333.3]
 //static float sendInterval = 3000.0;
-static float sendInterval = 333.3;
+static float sendInterval = 16.67;
 
 // メッセージ送信
 #define S_HOST_LOCAL "127.0.0.1"
 //#define S_HOST_PC1 "192.168.0.1"
 //#define S_HOST_PC2 "192.168.0.2"
-#define S_HOST_PC1 "10.0.0.1"
-#define S_HOST_PC2 "10.0.0.2"
+//#define S_HOST_PC1 "10.0.0.1"
+//#define S_HOST_PC2 "10.0.0.2"
+#define S_HOST_PC1 "127.0.0.1"
+#define S_HOST_PC2 "127.0.0.1"
 #define S_PORT_1 12011 // サウンドプレーヤ
 #define S_PORT_2 12022 // 2D app
 #define S_PORT_3 12033 // 3D app
@@ -29,6 +31,9 @@ static float sendInterval = 333.3;
 
 // アプリケーションウィンドウに対する、デスクトップフィールドの大きさ
 #define WINDOW_DESKTOPFIELD_RATIO 0.55
+
+// 衝突と判定する最大距離
+#define TH_COLISION 30
 
 
 //

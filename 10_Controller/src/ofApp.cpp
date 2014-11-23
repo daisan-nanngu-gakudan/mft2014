@@ -30,6 +30,8 @@ void ofApp::setup(){
     // 通信のセットアップ - 送信部
 //    setupSender(false);
     setupSender(true);
+    
+    collidedItem = -1;
 }
 
 //--------------------------------------------------------------
@@ -42,6 +44,9 @@ void ofApp::update(){
     
     // モデルの更新
     if (bAnimate) bike.update();
+    
+    // ファイルとの衝突判定
+    colition();
     
     // 通信
     updateSender(); // フラグの考慮は呼び出し先でやってくれる
@@ -76,9 +81,27 @@ void ofApp::draw(){
     
     showDebug();
     if(bShowMenu) showMenu();
+    
+    ofSetColor(255);
+    ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
+    
 
     // debug
     ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
 }
 
+
+void ofApp::colition()
+{
+    ofVec2f * bikePos = &bike._location;
+    for (int i=0; i<items.size(); i++){
+        float diff = items[i]._p.distance(*bikePos);
+        if (diff < TH_COLISION)
+        {
+            collidedItem = i ; // 最初に衝突と判定したファイルのIDを保持
+            return;
+        }
+    }
+    collidedItem = -1;
+}
 

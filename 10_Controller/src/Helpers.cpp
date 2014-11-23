@@ -134,7 +134,7 @@ void ofApp::setupFinderItems(){
             
             if(line.empty() == false) {
                 vector<string> words = ofSplitString(line, " ");
-                FinderItem tmpItem = FinderItem(ofVec2f(ofToFloat(words[3]), ofToFloat(words[4])));
+                FinderItem tmpItem = FinderItem(ofVec2f(ofToFloat(words[3]), ofToFloat(words[4])), words[2]);
                 items.push_back(tmpItem);
             }
         }

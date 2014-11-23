@@ -25,6 +25,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+        void colition();
     
         // - - - - app - - - - //
 
@@ -47,6 +48,7 @@ class ofApp : public ofBaseApp{
     
         // Finder Items
         vector<FinderItem> items;
+        int collidedItem; // 衝突中のファイルID
     
         // - - - - oscsend    - - - - //
         ofxOscSender senders[3];
@@ -54,6 +56,7 @@ class ofApp : public ofBaseApp{
         void setupSender(bool); // bool で起動要否を切替
         void updateSender();
         void send(); // メッセージ送信
+        void sendItems(); // ファイル情報を送信
 
         // - - - - oscreceive - - - - //
         ofxOscReceiver receiver;

@@ -3,15 +3,15 @@
 //--------------------------------------------------------------
 //
 //
-FinderItem::FinderItem(const ofVec2f point){
+FinderItem::FinderItem(const ofVec2f point, string name){
     _p = point;
+    _name = name;
 }
 
 //--------------------------------------------------------------
 //
 //
 void FinderItem::setup() {
-    
 }
 
 //--------------------------------------------------------------
@@ -41,4 +41,3 @@ void FinderItem::drawInfo() {
     ofPopStyle();
     
 }
-

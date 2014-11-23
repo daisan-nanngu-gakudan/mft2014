@@ -103,7 +103,12 @@ public:
         mFPSCam.target(ofVec3f(1,0,0));
         mFPSCam.disableMove();
         mOculus.baseCamera = &mFPSCam;
-        mOculus.setup();
+        ofFbo::Settings settings;
+        settings.numSamples = 4;
+        settings.internalformat = GL_RGBA;
+        settings.useDepth = true;
+        settings.useStencil = true;
+        mOculus.setup(settings);
         
         //----------
         // get file items
@@ -148,6 +153,7 @@ public:
                       ofVec2f(-(DESKTOP_WIDTH*0.5), DESKTOP_WIDTH*0.5),
                       ofVec2f(-(DESKTOP_HEIGHT*0.5), DESKTOP_HEIGHT*0.5), &mrBikeLocation);
         gui->addRotarySlider("DIRECTION", 0.0, TWO_PI, &mrBikeDirection);
+        gui->addSlider("EYE_HEIGHT", 0, 120, &mEyeHeight);
         
         gui->addSpacer();
         gui->addLabel("MANUAL_CAMERA");
@@ -359,9 +365,6 @@ public:
         }
         
         
-//        ofLine(mFPSCam.getPosition(), ofVec3f(mFPSCam.getPosition().x, mFPSCam.getPosition().y, mFPSCam.getPosition().z + 200));
-        
-        
         //----------
         // draw info
         //----------
@@ -372,6 +375,7 @@ public:
             s << "file items" <<  endl;
             for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->mPos << " " << mStage.getSharedData().file_items[i]->mType << endl;
             s << "collision: " << mCollidedItem << endl;
+            ofSetColor(255);
             ofDrawBitmapString(s.str(), mGui[0]->getRect()->getMaxX() + 20, mGui[0]->getRect()->getMinY() + 10);
         }
     }
@@ -453,9 +457,15 @@ public:
                     if (filename.back() == "txt") type = FILE_ITEM_TEXT;
                     if (filename.back() == "mov") type = FILE_ITEM_MOVIE;
                     
-                    float fx = (ofToFloat(words[3]) - (DESKTOP_WIDTH*0.5)) * 2;
-                    float fy = (ofToFloat(words[4]) - (DESKTOP_HEIGHT*0.5)) * 2;
-                    file_items.push_back(new FileItem(ofVec2f(fx, fy), type, words[2]));
+                    float x = ofToFloat(words[3]);
+                    float y = ofToFloat(words[4]);
+                    x -= DESKTOP_WIDTH*0.5;
+                    y -= DESKTOP_HEIGHT*0.5;
+                    x = abs(x);
+                    y = abs(y);
+                    x *= 2;
+                    y *= 2;
+                    file_items.push_back(new FileItem(ofVec2f(x, y), type, words[2]));
                 }
             }
         } // load end

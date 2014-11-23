@@ -107,9 +107,8 @@ public:
     {
         ofPushStyle();
         ofPushMatrix();
-        ofEnableDepthTest();
         
-        ofTranslate(mPos.x, 10, mPos.y);
+        ofTranslate(mPos.x, 100, mPos.y);
         ofRotate(ofGetElapsedTimef() * 30, 0, 1, 0);
         ofSetRectMode(OF_RECTMODE_CENTER);
         mIconImage.draw(0, 0, 0, 100, -100);
@@ -118,7 +117,6 @@ public:
 //        ofCircle(mPos.x, -100, mPos.y, 20);
         ofDrawBitmapString(mFileName, 0, 60, 0);
         
-        ofDisableDepthTest();
         ofPopMatrix();
         ofPopStyle();
     }

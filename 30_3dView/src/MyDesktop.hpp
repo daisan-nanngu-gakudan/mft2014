@@ -1,6 +1,7 @@
 #pragma once
 
 #include "common.h"
+#include "SharedDataReceiver.hpp"
 #include "ofxUI.h"
 
 class MyDesktop : public BaseStage
@@ -56,13 +57,22 @@ public:
             (*it)->update();
             ++it;
         }
+        
+        //----------
+        // update mmd
+        //----------
+        getSharedData().mmdReceiver.update();
     }
     
     void draw()
-    {        
+    {
+        glEnable(GL_DEPTH_TEST);
+        
         drawStage(1);
         
         //mMesh.drawVertices();
+        
+        drawCeilingDisplay();
         
         //----------
         // draw file items
@@ -73,6 +83,8 @@ public:
             (*it)->draw();
             ++it;
         }
+        
+        glDisable(GL_DEPTH_TEST);
     }
     
     void drawStage(int mode)
@@ -99,6 +111,23 @@ public:
         ofRotate(90, 0, 0, 0);
         ofFill();
         mDesktopImage.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
+        ofPopMatrix();
+    }
+    
+    void drawCeilingDisplay()
+    {
+        ofTexture & tex = getSharedData().mmdReceiver.getTextureRef();
+        if (!tex.isAllocated()) return;
+        
+        ofSetColor(255, 255, 255);
+        ofPushMatrix();
+        ofTranslate(0, 1500, 0);
+        ofRotate(90, 0, 0, 0);
+        ofFill();
+//        ofDrawPlane(0, 0, DESKTOP_WIDTH*2, DESKTOP_HEIGHT*2);
+//        ofRect(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
+        
+        tex.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
         ofPopMatrix();
     }
 };

@@ -18,7 +18,7 @@ OFX_OCULUSRIFT_LIBS = "$(ADDONS_PATH)/ofxOculusDK2/libs/LibOVR/Lib/MacOS/Release
 
 
 // others
-OFX_ADDONS = $(ADDONS_PATH)/ofxStateMachine/src $(ADDONS_PATH)/ofxPostGlitch/src $(ADDONS_PATH)/ofxXmlSettings/src $(ADDONS_PATH)/ofxFPSCamera/src $(ADDONS_PATH)/ofxKeyPressedDoxygen/src $(ADDONS_PATH)/ofxOsc/src $(ADDONS_PATH)/ofxOsc/libs $(ADDONS_PATH)/ofxOsc/libs/oscpack/src/ip $(ADDONS_PATH)/ofxOsc/libs/oscpack/src/osc $(ADDONS_PATH)/ofxUI/src
+OFX_ADDONS = $(ADDONS_PATH)/ofxStateMachine/src $(ADDONS_PATH)/ofxPostGlitch/src $(ADDONS_PATH)/ofxXmlSettings/src $(ADDONS_PATH)/ofxFPSCamera/src $(ADDONS_PATH)/ofxKeyPressedDoxygen/src $(ADDONS_PATH)/ofxOsc/src $(ADDONS_PATH)/ofxOsc/libs $(ADDONS_PATH)/ofxOsc/libs/oscpack/src/ip $(ADDONS_PATH)/ofxOsc/libs/oscpack/src/osc $(ADDONS_PATH)/ofxUI/src $(ADDONS_PATH)/ofxSharedMemory/src
 
 // all addons
 OF_ADDON_HEADERS = $(OFX_OCULUSRIFT_HEADERS) $(OFX_ADDONS)

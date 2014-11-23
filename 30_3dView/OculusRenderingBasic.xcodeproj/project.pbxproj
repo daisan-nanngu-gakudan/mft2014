@@ -240,6 +240,8 @@
 		916393671A1FB17F00DD8401 /* ofxUIWidgetWithLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUIWidgetWithLabel.cpp; sourceTree = "<group>"; };
 		916393681A1FB17F00DD8401 /* ofxUIWidgetWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUIWidgetWithLabel.h; sourceTree = "<group>"; };
 		916393691A1FB17F00DD8401 /* ofxUIWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUIWrapper.h; sourceTree = "<group>"; };
+		9194329A1A225A9600D9AC7C /* ofxSharedMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSharedMemory.h; sourceTree = "<group>"; };
+		919432B01A225B3F00D9AC7C /* SharedDataReceiver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SharedDataReceiver.hpp; sourceTree = "<group>"; };
 		919D23291A187B3200956495 /* IpEndpointName.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IpEndpointName.cpp; sourceTree = "<group>"; };
 		919D232A1A187B3200956495 /* IpEndpointName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpEndpointName.h; sourceTree = "<group>"; };
 		919D232B1A187B3200956495 /* NetworkingUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingUtils.h; sourceTree = "<group>"; };
@@ -550,6 +552,23 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		9194324A1A225A9500D9AC7C /* ofxSharedMemory */ = {
+			isa = PBXGroup;
+			children = (
+				919432991A225A9500D9AC7C /* src */,
+			);
+			name = ofxSharedMemory;
+			path = ../../../addons/ofxSharedMemory;
+			sourceTree = "<group>";
+		};
+		919432991A225A9500D9AC7C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9194329A1A225A9600D9AC7C /* ofxSharedMemory.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		919D23241A187B3200956495 /* ofxOsc */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,6 +678,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				9194324A1A225A9500D9AC7C /* ofxSharedMemory */,
 				916391391A1FB17C00DD8401 /* ofxUI */,
 				919D23241A187B3200956495 /* ofxOsc */,
 				914C80721A172FD600F14971 /* ofxKeyPressedDoxygen */,
@@ -737,6 +757,7 @@
 				914C7FCF1A1727A600F14971 /* ofApp.hpp */,
 				914C7FCE1A1727A600F14971 /* MyDesktop.hpp */,
 				913C30B41A2115D6008960F7 /* FileItem.hpp */,
+				919432B01A225B3F00D9AC7C /* SharedDataReceiver.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

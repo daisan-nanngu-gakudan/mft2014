@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "FileItem.hpp"
 #include "ofxState.h"
+#include "SharedDataReceiver.hpp"
 
 //==========
 // stage name
@@ -69,6 +70,8 @@ public:
     float loc_y;
     
     vector<FileItem *> file_items;
+    
+    SharedDataReceiver mmdReceiver;
 };
 
 typedef SharedData shd;

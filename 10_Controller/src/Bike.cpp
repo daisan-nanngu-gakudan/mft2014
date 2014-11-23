@@ -28,6 +28,8 @@ void Bike::update(){
 //    Util::crop(&_location, ofVec2f(-100, -200), ofVec2f(100, 200));
     Util::crop(&_location, _cropBegin, _cropEnd);
     
+    _speed *= 0.9960            ;
+    
     // update history
     if (_locHist.size() >= 20) _locHist.pop_front();
     _locHist.push_back(_location);
@@ -73,7 +75,7 @@ void Bike::draw(){
 	
     ofPushMatrix();
         ofTranslate(_location.x, _location.y);
-        ofCircle(0, 0, 10);
+        ofCircle(0, 0, 30);
         ofLine(0, 0, 10*cos(_direction), 10*sin(_direction));
     ofPopMatrix();
 
@@ -93,7 +95,7 @@ void Bike::drawTrack(){
 	list<ofVec2f>::iterator it = _locHist.begin();
 	while(it != _locHist.end())
 	{
-        ofCircle((int)it->x, (int)it->y, 8);
+        ofCircle((int)it->x, (int)it->y, 28	);
 		++it;
 	}
     
@@ -117,7 +119,7 @@ void Bike::setHandle(float st){
 }
 
 void Bike::pedal(){
-	_speed += 0.1;
+	_speed += 0.25;
 }
 
 void Bike::stop(){

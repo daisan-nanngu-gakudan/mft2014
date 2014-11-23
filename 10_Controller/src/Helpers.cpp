@@ -5,7 +5,8 @@
 // - 描画時に必要な、座標系の変換をおこないます。
 
 void ofApp::setupSpaces(){
-    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+//    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+    ofTranslate(0, ofGetHeight(), 0);
     ofRotate(-90);
     
 //    ofScale(1, 1);
@@ -72,8 +73,8 @@ void ofApp::showDebug(){
 
 //--------------------------------------------------------------
 // showMenu
-// - 座標系を表現するガイドを表示します
-// - X, Y軸の正方向を太線とする
+// - メニューを表示します。
+// 
 
 void ofApp::showMenu(){
     stringstream s1;

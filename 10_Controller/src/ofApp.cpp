@@ -13,13 +13,15 @@ void ofApp::setup(){
     bUseSensor = true;
     bAnimate = true;
     bFade = true;
-    bShowMenu = true;
+    bShowMenu = false;
+    bNeedSending = true;
     
     desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
     
     bike.setup();
-    bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
-    
+//    bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
+
+    bike.setupCropSettings(ofVec2f(0,0), ofVec2f(1400, 900));
     
     // リソースファイル読込
     setupFinderItems();

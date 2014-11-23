@@ -1,3 +1,10 @@
-/dump 1 sample.aif 189 170
-/dump 2 SE_01.aif 189 202
-/dump 3 result.txt 300 200
+/dump 1 DuctileShaker.aif 288 258
+/dump 2 FriedBeat.aif 1011 71
+/dump 4 HitunedTablaBeat.aif 856 183
+/dump 5 KeTsohileHantleBeat.aif 860 603
+/dump 6 KhotsuAbutiBeat.aif 655 534
+/dump 7 NabendBeat.aif 374 567
+/dump 8 OPhelaJoangBeat.aif 1011 341
+/dump 9 SalaHantleBeat.aif 1245 811
+/dump 10 SmalzChorusDrum.aif 288 181
+/dump 11 SnapGroove.aif 1131 471

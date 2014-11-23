@@ -35,7 +35,7 @@ static const int LISTEN_PORT = 12033;
 //==========
 // deta
 //==========
-static const string DESKTOP_IMAGE_PATH = "images/desktop.png";
+static const string DESKTOP_IMAGE_PATH = "images/desktop.jpg";
 static const string FINDER_ITEM_LIST = "finderItems.txt";
 
 

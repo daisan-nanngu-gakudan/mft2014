@@ -53,6 +53,9 @@ class ofApp : public ofBaseApp
     // gui
     vector<ofxUICanvas *> mGui;
     
+    // window
+//    ofVideoGrabber mGrabber;
+    
 public:
     
     void setup()
@@ -81,10 +84,10 @@ public:
         mCtlMode = REMOTE_BIKE;
         mManCamPos.set(0, 20, 0);
         mManCamOri.set(0, 0, 0);
-        mEyeHeight = 10;
+        mEyeHeight = 30;
         mCollidedItem = -1;
         
-        //ofSetLogLevel( OF_LOG_VERBOSE );
+        ofSetLogLevel( OF_LOG_VERBOSE );
         //----------
         // setup stages
         //----------
@@ -265,7 +268,7 @@ public:
             else if (mCtlMode == REMOTE_BIKE) {
                 mFPSCam.setPosition(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y);
                 ofVec3f rot = mFPSCam.getOrientationEuler();
-                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
+                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 35, rot.z)); //TODO: fix direction
                 
                 // test
 //                float addy = ofMap(ofGetMouseY(), 0, ofGetHeight(), -1, 1, true);
@@ -354,6 +357,9 @@ public:
             ofSetColor(255, 0, 0);
             ofDrawSphere(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y, 25);
         }
+        
+        
+//        ofLine(mFPSCam.getPosition(), ofVec3f(mFPSCam.getPosition().x, mFPSCam.getPosition().y, mFPSCam.getPosition().z + 200));
         
         
         //----------
@@ -447,7 +453,9 @@ public:
                     if (filename.back() == "txt") type = FILE_ITEM_TEXT;
                     if (filename.back() == "mov") type = FILE_ITEM_MOVIE;
                     
-                    file_items.push_back(new FileItem(ofVec2f(ofToFloat(words[3]), ofToFloat(words[4])), type, words[2]));
+                    float fx = (ofToFloat(words[3]) - (DESKTOP_WIDTH*0.5)) * 2;
+                    float fy = (ofToFloat(words[4]) - (DESKTOP_HEIGHT*0.5)) * 2;
+                    file_items.push_back(new FileItem(ofVec2f(fx, fy), type, words[2]));
                 }
             }
         } // load end

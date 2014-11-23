@@ -112,7 +112,7 @@ public:
         ofTranslate(mPos.x, 10, mPos.y);
         ofRotate(ofGetElapsedTimef() * 30, 0, 1, 0);
         ofSetRectMode(OF_RECTMODE_CENTER);
-        mIconImage.draw(0, 0, 0, 100, 100);
+        mIconImage.draw(0, 0, 0, 100, -100);
         
 //        ofSetColor(0, 255, 0);
 //        ofCircle(mPos.x, -100, mPos.y, 20);

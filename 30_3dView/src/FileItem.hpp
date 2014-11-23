@@ -40,7 +40,7 @@ public:
                 assert(mIconImage.loadImage(ICON_IMAGE_PATH_SOUND));
                 assert(mSound.loadSound(ITEM_PATH_ROOT + mFileName));
                 mSound.stop();
-                mSound.setLoop(OF_LOOP_NONE);
+//                mSound.setLoop(OF_LOOP_NONE);
                 break;
             case FILE_ITEM_TEXT:
             {
@@ -127,7 +127,12 @@ public:
     {
         switch (mType)
         {
-            case FILE_ITEM_SOUND: if(!mSound.getIsPlaying()) mSound.play(); break;
+            case FILE_ITEM_SOUND:
+                if(!mSound.getIsPlaying())
+                {
+                    mSound.play();
+                }
+                break;
             case FILE_ITEM_TEXT:break;
             case FILE_ITEM_MOVIE: break;
         }
@@ -148,6 +153,7 @@ public:
                     ofSetColor(ofColor::fromHsb(ofMap(i, 0, nBandsToGet-1, 0, 255, true), 255, 255));
                     ofRect(i * bitw, height, bitw, -(fftSmoothed[i] * 200));
                 }
+                if (mSound.getPosition() == 1.0f) mSound.stop();
                 if (!mSound.getIsPlaying()) bPlay = false;
             }
                 break;

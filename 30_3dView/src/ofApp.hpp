@@ -307,11 +307,12 @@ public:
             mOculus.beginOverlay(-230, 320,240);
             ofRectangle overlayRect = mOculus.getOverlayRectangle();
             
+            
             ofPushStyle();
             ofEnableAlphaBlending();
-            ofFill();
-            ofSetColor(0, 180);
-            ofRect(overlayRect);
+//            ofFill();
+//            ofSetColor(0, 180);
+//            ofRect(overlayRect);
             
             //----------
             // draw file event

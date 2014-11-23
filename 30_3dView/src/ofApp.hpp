@@ -39,7 +39,7 @@ class ofApp : public ofBaseApp
     ofVec3f mrBikeLocation;
     ofVec3f mManCamPos;
     ofVec3f mManCamOri;
-    
+    int mCollidedItem;
     
     // toggles
     bool bDebug;
@@ -82,6 +82,7 @@ public:
         mManCamPos.set(0, 20, 0);
         mManCamOri.set(0, 0, 0);
         mEyeHeight = 10;
+        mCollidedItem = -1;
         
         //ofSetLogLevel( OF_LOG_VERBOSE );
         //----------
@@ -233,6 +234,10 @@ public:
                 {
                     mrBikeLocation.y = m.getArgAsFloat(0);
                 }
+                if (m.getAddress() == "/dsng2/ctl/collide")
+                {
+                    mCollidedItem = m.getArgAsInt32(0);
+                }
             }
         }
         
@@ -263,7 +268,7 @@ public:
                 mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
                 
                 // test
-                float addy = ofMap(ofGetMouseY(), 0, ofGetHeight(), -1, 1, true);
+//                float addy = ofMap(ofGetMouseY(), 0, ofGetHeight(), -1, 1, true);
 //                mFPSCam.setOrientation(ofVec3f(rot.x -= addy, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
             }
         }
@@ -272,6 +277,16 @@ public:
         // update stage
         //----------
         mStage.update();
+        
+        //----------
+        // corition files
+        //----------
+        item_it it = mStage.getSharedData().file_items.begin();
+        while (it != mStage.getSharedData().file_items.end())
+        {
+            (*it)->draw();
+            ++it;
+        }
         
     }
     
@@ -284,30 +299,37 @@ public:
         
         if(mOculus.isSetup() && bOculusView)
         {
+            //==========
+            // draw over view
+            //==========
+            if(mCollidedItem != -1) mStage.getSharedData().file_items[mCollidedItem]->play();
             
-            if(1)
+            mOculus.beginOverlay(-230, 320,240);
+            ofRectangle overlayRect = mOculus.getOverlayRectangle();
+            
+            ofPushStyle();
+            ofEnableAlphaBlending();
+            ofFill();
+            ofSetColor(0, 180);
+            ofRect(overlayRect);
+            
+            //----------
+            // draw file event
+            //----------
+            item_it it = mStage.getSharedData().file_items.begin();
+            while (it != mStage.getSharedData().file_items.end())
             {
-                mOculus.beginOverlay(-230, 320,240);
-                ofRectangle overlayRect = mOculus.getOverlayRectangle();
-                
-                ofPushStyle();
-                ofEnableAlphaBlending();
-                ofFill();
-//                ofSetColor(255, 40, 10, 200);
-//                ofRect(overlayRect);
-//                ofColor col;
-//                col.setHue(ofRandom(255));
-//                col.setBrightness(255);
-//                col.setSaturation(255);
-//                ofSetColor(col, 127);
-                ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255), 127);
-                ofRect(overlayRect);
-                
-                
-                ofPopStyle();
-                mOculus.endOverlay();
+                (*it)->drawEvent(320, 240);
+                ++it;
             }
             
+            ofPopStyle();
+            mOculus.endOverlay();
+            
+            
+            //==========
+            // draw main view
+            //==========
             ofSetColor(255);
             glEnable(GL_DEPTH_TEST);
             mOculus.beginLeftEye();
@@ -342,6 +364,7 @@ public:
             s << ofxKeyPressedDoxygen::getDoc() << endl;
             s << "file items" <<  endl;
             for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->mPos << " " << mStage.getSharedData().file_items[i]->mType << endl;
+            s << "collision: " << mCollidedItem << endl;
             ofDrawBitmapString(s.str(), mGui[0]->getRect()->getMaxX() + 20, mGui[0]->getRect()->getMinY() + 10);
         }
     }

@@ -1,0 +1,45 @@
+public:
+    ofVec2f mPos;
+    fileItemType mType;
+    string mFileName;
+    ofImage mIconImage;
+    
+    FileItem(ofVec2f pos, fileItemType type, const string & filename): mPos(pos), mType(type), mFileName(filename)
+    {
+        switch (mType)
+        {
+            case FILE_ITEM_SOUND:
+                assert(mIconImage.loadImage(ICON_IMAGE_PATH_SOUND));
+                assert(mSound.loadSound(ITEM_PATH_ROOT + mFileName));
+                mSound.stop();
+                mSound.setLoop(OF_LOOP_NONE);
+                break;
+            case FILE_ITEM_TEXT:
+            {
+                assert(mIconImage.loadImage(ICON_IMAGE_PATH_TEXT));
+                ofBuffer buffer(ITEM_PATH_ROOT + mFileName);
+                while (!buffer.isLastLine())
+                {
+                    cout << buffer.getNextLine() << endl;
+//                    mText.push_back(buffer.getNextLine());
+                }
+            }
+                break;
+            case FILE_ITEM_MOVIE:
+                assert(mIconImage.loadImage(ICON_IMAGE_PATH_MOVIE));
+//                assert(mVideo.loadMovie(ITEM_PATH_ROOT + mFileName));
+//                mVideo.stop();
+//                mVideo.setLoopState(OF_LOOP_NONE);
+                break;
+        }
+        bPlay = false;
+        
+        fftSmoothed = new float[8192];
+        for (int i = 0; i < 8192; i++){
+            fftSmoothed[i] = 0;
+        }
+        nBandsToGet = 64;
+        
+        mLineCount = 0;
+        
+    }

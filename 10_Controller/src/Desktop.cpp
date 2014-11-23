@@ -28,7 +28,9 @@ void Desktop::draw() {
     ofNoFill();
 //    glLineWidth(1);
     ofSetColor(0, 188, 0);
-    ofRect(_p.x, _p.y, _size.x, _size.y);
+    ofSetRectMode(OF_RECTMODE_CORNER);
+//    ofRect(_p.x, _p.y, _size.x, _size.y);
+    ofRect(0, 0, _size.x, _size.y);
     
     ofPopStyle();
 }

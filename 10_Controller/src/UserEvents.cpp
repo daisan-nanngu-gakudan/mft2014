@@ -44,7 +44,8 @@ void ofApp::keyPressed(int key){
             sendItems();
             break;
         case '?':
-            bShowMenu = !bShowMenu;
+            // bShowMenu = !bShowMenu;
+            ofToggleFullscreen();
             break;
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         default:

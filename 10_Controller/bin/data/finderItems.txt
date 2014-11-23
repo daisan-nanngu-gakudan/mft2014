@@ -1,6 +1,10 @@
-/dump 1 23648_loofa_A_004.aif 189 170
-/dump 2 23649_loofa_A_005.aif 189 202
-/dump 3 23650_loofa_A_006.aif 189 234
-/dump 4 23651_loofa_A_007.aif 189 266
-/dump 5 23652_loofa_A_008.aif 369 266
-/dump 6 23653_loofa_A_009.aif 189 298
+/dump 1 DuctileShaker.aif 288 258
+/dump 2 FriedBeat.aif 1011 71
+/dump 4 HitunedTablaBeat.aif 856 183
+/dump 5 KeTsohileHantleBeat.aif 860 603
+/dump 6 KhotsuAbutiBeat.aif 655 534
+/dump 7 NabendBeat.aif 374 567
+/dump 8 OPhelaJoangBeat.aif 1011 341
+/dump 9 SalaHantleBeat.aif 1245 811
+/dump 10 SmallChorusDrum.aif 288 181
+/dump 11 SnapGroove.aif 1131 471

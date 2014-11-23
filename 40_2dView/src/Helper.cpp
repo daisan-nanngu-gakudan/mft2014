@@ -2,62 +2,46 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-// SETUP
+// drawInfo
 //
-void ofApp::setupOsc(){
+void ofApp::drawInfo(){
     
-    cout << "listening for osc messages on port " << PORT << "\n";
-    receiver.setup(PORT);
+    ofPopStyle();
     
-    current_msg_string = 0;
-    mouseX = 0;
-    mouseY = 0;
+    stringstream s1;
     
-    ofBackground(30, 30, 130);
-}
-
-//--------------------------------------------------------------
-// UPDATE
-//
-void ofApp::updateOsc(){
-	// hide old messages
-	for(int i = 0; i < NUM_MSG_STRINGS; i++){
-		if(timers[i] < ofGetElapsedTimef()){
-			msg_strings[i] = "";
-		}
-	}
-    
-	// check for waiting messages
-	while(receiver.hasWaitingMessages()){
-        // get the next message
-        ofxOscMessage m;
-        receiver.getNextMessage(&m);
+    if (bDebugMode) {
         
-        dumpOSC(m);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("demo mode (No OSC)", 20, 20);
+        
+        s1  << "- - mouse info - -" << endl
+            << "speed     :  " << ofToString(mp._speed,2) << endl
+            << "steer     : "  << (mp._steer < 0 ?'-':' ')
+                               << ofToString(abs(mp._steer),2) << endl
+            << "direction :  " << ofToString(mp._direction, 2) << endl
+            << "location  :  " << ofToString(mp._location.x, 0) << ", "
+                               << ofToString(mp._location.y, 0) << endl;
+        
+        
+    } else {
+        
+        // use OSC
+        
+        ofSetColor(255, 255, 0);
+        ofDrawBitmapString("OSC Mode", 20, 20);
+        
+        s1  << "- - message info - -" << endl
+            << "DUMMY" << endl
+        << "speed     :  " << ofToString(mp._speed,2) << endl
+        << "steer     : "  << (mp._steer < 0 ?'-':' ')
+                           << ofToString(abs(mp._steer),2) << endl
+        << "direction :  " << ofToString(mp._direction, 2) << endl
+        << "location  :  " << ofToString(mp._location.x, 0) << ", "
+                           << ofToString(mp._location.y, 0) << endl;
+        
     }
-}
-
-//--------------------------------------------------------------
-// OSCメッセージをコンソールに出力する関数
-//
-string ofApp::dumpOSC(ofxOscMessage m) {
-	string str = m.getAddress();
-	for (int i=0; i<m.getNumArgs(); i++ ) {
-		str += " ";
-		switch (m.getArgType(i)) {
-			case OFXOSC_TYPE_INT32:
-				str += ofToString( m.getArgAsInt32(i));
-				break;
-			case OFXOSC_TYPE_FLOAT:
-				str += ofToString( m.getArgAsFloat(i));
-				break;
-			case OFXOSC_TYPE_STRING:
-				str += m.getArgAsString(i);
-				break;
-			default:
-				break;
-		}
-	}
-	cout << str << endl;
-	return str;
+    
+    ofDrawBitmapString(s1.str(), 20, 40);
+    ofPushStyle();
 }

@@ -1,47 +1,12 @@
 <Widget>
     <Kind>2</Kind>
     <Name>ENABLE_HMD_VIEW</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>DUMP_OSC</Name>
     <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>2</Kind>
-    <Name>MANUAL_CAMERA</Name>
-    <Value>0</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>POS_X</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>POS_Y</Name>
-    <Value>1054.187255859</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>POS_Z</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ORI_X</Name>
-    <Value>-91.330047607</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ORI_Y</Name>
-    <Value>0.000000000</Value>
-</Widget>
-<Widget>
-    <Kind>4</Kind>
-    <Name>ORI_Z</Name>
-    <Value>153.750000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -56,21 +21,56 @@
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>0.927083373</Value>
+    <Value>0.100000024</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPEED</Name>
-    <Value>1.541666627</Value>
+    <Value>4.000000000</Value>
 </Widget>
 <Widget>
     <Kind>11</Kind>
     <Name>LOCATION</Name>
-    <XValue>0.000000000</XValue>
-    <YValue>0.000000000</YValue>
+    <XValue>-466.666656494</XValue>
+    <YValue>-440.625000000</YValue>
 </Widget>
 <Widget>
     <Kind>21</Kind>
     <Name>DIRECTION</Name>
+    <Value>1.160669088</Value>
+</Widget>
+<Widget>
+    <Kind>2</Kind>
+    <Name>MANUAL_CAMERA</Name>
+    <Value>0</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_X</Name>
+    <Value>41.666748047</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_Y</Name>
+    <Value>-1187.500000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>POS_Z</Name>
     <Value>0.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_X</Name>
+    <Value>-90.000000000</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_Y</Name>
+    <Value>0.150010586</Value>
+</Widget>
+<Widget>
+    <Kind>4</Kind>
+    <Name>ORI_Z</Name>
+    <Value>180.000000000</Value>
 </Widget>

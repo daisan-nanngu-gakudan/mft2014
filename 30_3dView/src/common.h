@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "FileItem.hpp"
 #include "ofxState.h"
 
 //==========
@@ -35,6 +36,7 @@ static const int LISTEN_PORT = 12033;
 // deta
 //==========
 static const string DESKTOP_IMAGE_PATH = "images/desktop.png";
+static const string FINDER_ITEM_LIST = "finderItems.txt";
 
 
 
@@ -65,10 +67,13 @@ public:
     
     float loc_x;
     float loc_y;
+    
+    vector<FileItem *> file_items;
 };
 
 typedef SharedData shd;
 typedef itg::ofxState<SharedData> BaseStage;
-
+typedef vector<FileItem *>::iterator item_it;
 
 #define VALIDE(b) assert(b)
+

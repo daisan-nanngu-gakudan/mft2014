@@ -126,6 +126,7 @@
 /* Begin PBXFileReference section */
 		270A248C141220590073405C /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		647F8CA0199A793F006A51EB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		913C30B41A2115D6008960F7 /* FileItem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FileItem.hpp; sourceTree = "<group>"; };
 		914C7F4A1A17260000F14971 /* ofxOculusDK2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOculusDK2.cpp; sourceTree = "<group>"; };
 		914C7F4B1A17260000F14971 /* ofxOculusDK2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOculusDK2.h; sourceTree = "<group>"; };
 		914C7FC21A17269F00F14971 /* ofxState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxState.h; sourceTree = "<group>"; };
@@ -372,14 +373,6 @@
 				914C80151A1727C500F14971 /* ofxPostGlitch.h */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		914C80231A172AB900F14971 /* Stages */ = {
-			isa = PBXGroup;
-			children = (
-				914C7FCE1A1727A600F14971 /* MyDesktop.hpp */,
-			);
-			name = Stages;
 			sourceTree = "<group>";
 		};
 		914C80241A172B5C00F14971 /* ofxXmlSettings */ = {
@@ -742,7 +735,8 @@
 				914C7FCC1A1727A600F14971 /* common.h */,
 				914C7FCD1A1727A600F14971 /* main.cpp */,
 				914C7FCF1A1727A600F14971 /* ofApp.hpp */,
-				914C80231A172AB900F14971 /* Stages */,
+				914C7FCE1A1727A600F14971 /* MyDesktop.hpp */,
+				913C30B41A2115D6008960F7 /* FileItem.hpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;

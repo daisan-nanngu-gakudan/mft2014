@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 #include "common.h"
+#include "FileItem.hpp"
+
 #include "ofxStateMachine.h"
 #include "ofxOculusDK2.h"
 #include "ofxPostGlitch.h"
@@ -33,6 +35,7 @@ class ofApp : public ofBaseApp
     float mrBikeSpeed;
     float mrBikeSteer;
     float mrBikeDirection;
+    float mEyeHeight;
     ofVec3f mrBikeLocation;
     ofVec3f mManCamPos;
     ofVec3f mManCamOri;
@@ -75,9 +78,10 @@ public:
         bDebug = true;
         bOculusView = false;
         bDumpOsc = true;
-        mCtlMode = FPS_KEY;
-        mManCamPos.set(0, 10, 0);
+        mCtlMode = REMOTE_BIKE;
+        mManCamPos.set(0, 20, 0);
         mManCamOri.set(0, 0, 0);
+        mEyeHeight = 10;
         
         //ofSetLogLevel( OF_LOG_VERBOSE );
         //----------
@@ -93,8 +97,14 @@ public:
         mFPSCam.setup();
         mFPSCam.camHeight = 10;
         mFPSCam.target(ofVec3f(1,0,0));
+        mFPSCam.disableMove();
         mOculus.baseCamera = &mFPSCam;
         mOculus.setup();
+        
+        //----------
+        // get file items
+        //----------
+        getFinderItems(FINDER_ITEM_LIST, mStage.getSharedData().file_items);
         
         //----------
         // setup shared data
@@ -111,14 +121,13 @@ public:
         // common canvas
 //        ofxUICanvas * gui = new ofxUISuperCanvas("COMMON_PARAMETERS");
         ofxUICanvas * gui = new ofxUIScrollableCanvas(0, 0, 200, ofGetHeight());
-        gui->addSpacer();
+        gui->addLabel("PARAMETERS");
         gui->addFPSSlider("FPS");
         
         gui->addSpacer();
         gui->addLabel("TOGGLES");
         gui->addToggle("ENABLE_HMD_VIEW", &bOculusView);
         gui->addToggle("DUMP_OSC", &bDumpOsc);
-        gui->addToggle("MANUAL_CAMERA", &bManCamMode);
         
         gui->addSpacer();
         gui->addLabel("CONTROLL_MODE");
@@ -137,7 +146,8 @@ public:
         gui->addRotarySlider("DIRECTION", 0.0, TWO_PI, &mrBikeDirection);
         
         gui->addSpacer();
-        gui->addLabel("MANUAL_CAMERA_CONTROLL");
+        gui->addLabel("MANUAL_CAMERA");
+        gui->addToggle("MANUAL_CAMERA", &bManCamMode);
         gui->addSlider("POS_X", -2000, 2000, &mManCamPos.x);
         gui->addSlider("POS_Y", -2000, 2000, &mManCamPos.y);
         gui->addSlider("POS_Z", -2000, 2000, &mManCamPos.z);
@@ -248,11 +258,13 @@ public:
                 mrBikeDirection = ofDegToRad(mFPSCam.getOrientationEuler().y - 180.0);
             }
             else if (mCtlMode == REMOTE_BIKE) {
-                ofVec3f cur = mFPSCam.getPosition();
-                mFPSCam.setPosition(mrBikeLocation.x, cur.y, mrBikeLocation.y);
+                mFPSCam.setPosition(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y);
                 ofVec3f rot = mFPSCam.getOrientationEuler();
-                //TODO: camera rotation from bike
                 mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
+                
+                // test
+                float addy = ofMap(ofGetMouseY(), 0, ofGetHeight(), -1, 1, true);
+//                mFPSCam.setOrientation(ofVec3f(rot.x -= addy, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
             }
         }
         
@@ -273,9 +285,28 @@ public:
         if(mOculus.isSetup() && bOculusView)
         {
             
-            //		if(showOverlay)
-            //        {
-            //        }
+            if(1)
+            {
+                mOculus.beginOverlay(-230, 320,240);
+                ofRectangle overlayRect = mOculus.getOverlayRectangle();
+                
+                ofPushStyle();
+                ofEnableAlphaBlending();
+                ofFill();
+//                ofSetColor(255, 40, 10, 200);
+//                ofRect(overlayRect);
+//                ofColor col;
+//                col.setHue(ofRandom(255));
+//                col.setBrightness(255);
+//                col.setSaturation(255);
+//                ofSetColor(col, 127);
+                ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255), 127);
+                ofRect(overlayRect);
+                
+                
+                ofPopStyle();
+                mOculus.endOverlay();
+            }
             
             ofSetColor(255);
             glEnable(GL_DEPTH_TEST);
@@ -294,9 +325,25 @@ public:
             mFPSCam.end();
         }
         
-        stringstream s;
-        s << ofxKeyPressedDoxygen::getDoc() << endl;
-        ofDrawBitmapString(s.str(), mGui[0]->getRect()->getMaxX() + 20, mGui[0]->getRect()->getMinY() + 10);
+        
+        if (bManCamMode)
+        {
+            ofSetColor(255, 0, 0);
+            ofDrawSphere(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y, 25);
+        }
+        
+        
+        //----------
+        // draw info
+        //----------
+        if (bDebug)
+        {
+            stringstream s;
+            s << ofxKeyPressedDoxygen::getDoc() << endl;
+            s << "file items" <<  endl;
+            for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->mPos << " " << mStage.getSharedData().file_items[i]->mType << endl;
+            ofDrawBitmapString(s.str(), mGui[0]->getRect()->getMaxX() + 20, mGui[0]->getRect()->getMinY() + 10);
+        }
     }
     
     void exit()
@@ -346,7 +393,45 @@ public:
         if (e.getName() == "MANUAL_CAMERA")
         {
             ofxUIToggle * tog = (ofxUIToggle *) e.widget;
-            tog->getValue() == 1 ? mFPSCam.enableMove() : mFPSCam.disableMove();
+            if (tog->getValue() == 1)
+            {
+                mFPSCam.disableMove();
+            } else {
+                mFPSCam.enableMove();
+            }
+        }
+    }
+    
+    
+    void getFinderItems(const string & filename, vector<FileItem *> & file_items)
+    {
+        ofBuffer buffer = ofBufferFromFile(filename);
+        if(buffer.size())
+        {
+            file_items.clear();
+            while(buffer.isLastLine() == false)
+            {
+                
+                string line = buffer.getNextLine();
+                
+                if(line.empty() == false)
+                {
+                    vector<string> words = ofSplitString(line, " ");
+                    vector<string> filename = ofSplitString(words[2], ".");
+                    fileItemType type;
+                    if (filename.back() == "aif") type = FILE_ITEM_SOUND;
+                    if (filename.back() == "txt") type = FILE_ITEM_TEXT;
+                    if (filename.back() == "mov") type = FILE_ITEM_MOVIE;
+                    
+                    file_items.push_back(new FileItem(ofVec2f(ofToFloat(words[3]), ofToFloat(words[4])), type, words[2]));
+                }
+            }
+        } // load end
+        
+        // debug info
+        ofLogNotice() << "FinderItems size:" << file_items.size();
+        for (int i=0; i<file_items.size(); i++) {
+            ofLogNotice() << "item[" << i << "] " << file_items[i]->mPos.x << ":" << file_items[i]->mPos.y;
         }
     }
     

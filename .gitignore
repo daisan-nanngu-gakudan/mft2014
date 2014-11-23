@@ -1,2 +1,11 @@
-10_Controller/bin/mySketchDebug.app/Contents/
-40_2dView/bin/mySketch3Debug.app/Contents/
+##########
+# xcode 
+##########
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/default.*
+*/*xcodeproj/*.xcworkspace/
+*/*.xcodeproj/xcshareddata/
+*/*.xcodeproj/xcuserdata/
+*.app
+

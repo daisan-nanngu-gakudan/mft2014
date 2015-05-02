@@ -16,28 +16,35 @@ void FinderItem::setup() {
 
 //--------------------------------------------------------------
 // update
-//[design] No any update.
+//
 //
 void FinderItem::update() {
 
 }
 //--------------------------------------------------------------
 // draw
-//[design] No any update.
+//  - Finder項目を描画します。
 //
 void FinderItem::draw() {
     
-    ofCircle(_p.x, _p.y, ITEM_SIZE_R);
+    ofCircle(_p.x, _p.y, DRAW_SIZE_FINDERITEM_R);
     
 }
 
+//--------------------------------------------------------------
+// drawInfo
+//  - Finder項目の近傍にテキストで情報表示します。
+//
 void FinderItem::drawInfo() {
 
     ofPushStyle();
 
     ofSetColor(COLOR_DEBUGINFO);
+
+    ofPushMatrix();
+    ofTranslate(22, 18); // 画面右上方にオフセット
     ofDrawBitmapString(ofToString(_p.x) + "\n" + ofToString(_p.y), _p.x, _p.y);
+    ofPopMatrix();
     
     ofPopStyle();
-    
 }

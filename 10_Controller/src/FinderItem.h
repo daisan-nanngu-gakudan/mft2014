@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "appConst.h"
 
-#define ITEM_SIZE_R 10 // drawing size
+//#define ITEM_SIZE_R 10 // drawing size
 
 class FinderItem {
     

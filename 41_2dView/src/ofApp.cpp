@@ -35,12 +35,15 @@ void ofApp::update(){
         }
         bGotMess = true;
     }
+    ofSetWindowTitle(ofToString(mX, 0) + ":" + ofToString(mY, 0));
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
     
     if (bGotMess) ofxMouseController::setPos(mX, mY);
+    
+//        if (bGotMess) ofxMouseController::setPos(1000, 300  );
     
     ofDrawBitmapString(ofToString(mX) + " | " + ofToString(mY), 20, 20);
 }

@@ -8,6 +8,7 @@ class Desktop {
 public:
     ofVec2f _size;
     ofVec2f _p;
+    ofImage desctopImage;
     
     void setup(const ofVec2f _size);
     void update();

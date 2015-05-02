@@ -15,7 +15,8 @@ static float sendInterval = 16.67;
 //#define S_HOST_PC1 "10.0.0.1"
 //#define S_HOST_PC2 "10.0.0.2"
 #define S_HOST_PC1 "10.0.0.1"
-#define S_HOST_PC2 "10.0.0.2"
+//#define S_HOST_PC2 "10.0.0.2"
+#define S_HOST_PC2 "192.168.0.11"
 #define S_PORT_1 12011 // サウンドプレーヤ
 #define S_PORT_2 12022 // 2D app
 #define S_PORT_3 12033 // 3D app
@@ -35,11 +36,16 @@ static float sendInterval = 16.67;
 // 衝突と判定する最大距離
 #define TH_COLISION 30
 
+// 自転車の速度減衰
+#define FRICTION 0.9960
+
+// drawings
+//#define DRAW_SIZE_FINDERITEM_R 20  // Finder項目
+#define DRAW_SIZE_FINDERITEM_R 10  // Finder項目
 
 //
 // color schemes
 //
-
 static ofColor COLOR_BIKE = ofColor(212, 0, 0);
 static ofColor COLOR_TRACK = ofColor(212, 188, 0);
 
@@ -48,3 +54,5 @@ static ofColor COLOR_DEBUGINFO = ofColor(255, 255, 255);
 static ofColor COLOR_GUIDE_X = ofColor(188, 0, 0);
 static ofColor COLOR_GUIDE_Y = ofColor(0, 188, 0);
 static ofColor COLOR_BACKGROUND = ofColor(128, 128, 128);
+
+static ofColor COLOR_FINDERITEM = ofColor(166, 198, 220);

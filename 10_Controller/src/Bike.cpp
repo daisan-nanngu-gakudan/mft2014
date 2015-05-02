@@ -22,13 +22,10 @@ void Bike::update(){
 	// update position
     _location.x += _speed * cos(_direction);
 	_location.y += _speed * sin(_direction);
-//    Util::crop(&_location, ofVec2f(-200, -100), ofVec2f(200, 100));
     
-    // TODO desktopに
-//    Util::crop(&_location, ofVec2f(-100, -200), ofVec2f(100, 200));
     Util::crop(&_location, _cropBegin, _cropEnd);
     
-    _speed *= 0.9960            ;
+    _speed *= FRICTION; // PARAM: 減衰
     
     // update history
     if (_locHist.size() >= 20) _locHist.pop_front();
@@ -119,7 +116,8 @@ void Bike::setHandle(float st){
 }
 
 void Bike::pedal(){
-	_speed += 0.25;
+//	_speed += 0.25;
+    _speed +=  1.25;
 }
 
 void Bike::stop(){

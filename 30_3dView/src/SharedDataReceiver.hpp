@@ -25,10 +25,6 @@ public:
     
     SharedDataReceiver()
     {
-        ofSetFrameRate(60);
-        ofEnableAlphaBlending();
-        ofSetLogLevel(OF_LOG_VERBOSE);
-        
         texture.allocate(mmd::videoWidth, mmd::videoHeight, GL_RGB);
         
         // setup + connect

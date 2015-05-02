@@ -63,14 +63,7 @@ static const string FINDER_ITEM_LIST = "finderItems.txt";
 class SharedData
 {
 public:
-    float desktop_width;
-    float desktop_height;
-    
-    float loc_x;
-    float loc_y;
-    
     vector<FileItem *> file_items;
-    
     SharedDataReceiver mmdReceiver;
 };
 
@@ -79,4 +72,34 @@ typedef itg::ofxState<SharedData> BaseStage;
 typedef vector<FileItem *>::iterator item_it;
 
 #define VALIDE(b) assert(b)
+
+
+//==========
+// utils
+//==========
+#define debugMouseX(a) (((float)ofGetMouseX()/(float)ofGetWidth())*a)
+#define debugMouseY(a) (((float)ofGetMouseY()/(float)ofGetHeight())*a)
+
+// aよりbが大きければb-aを返す（変数更新時のリミッター用）
+#define	MIN_NORM(a,b) (((a)<(b))?(a):(b-a))
+
+// 画面中心を取得
+#define CENTER_X (ofGetWidth()/2)
+#define CENTER_Y (ofGetHeight()/2)
+
+
+// 処理速度の計測
+static clock_t start = 0;
+#define START_CLOCK (start = clock())
+#define GET_CLOCK (clock()-start)
+#define PRINT_CLOCK(comment) (std::cout<<comment<<clock()-start<<std::endl)
+
+
+// ofLogger utils
+#define LOG_INFO ofToString(ofGetElapsedTimeMillis(),8)
+#define LOG_NOTICE ofLogNotice(LOG_INFO)
+#define LOG_ERROR ofLogError(LOG_INFO)
+#define LOG_WARNING ofLogWarning(LOG_INFO)
+
+#define MY_CHECK(e) assert(e)
 

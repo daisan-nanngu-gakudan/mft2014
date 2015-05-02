@@ -11,17 +11,17 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FPS_KEY</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>REMOTE_BIKE</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>0.927083373</Value>
+    <Value>-0.000000075</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -31,18 +31,18 @@
 <Widget>
     <Kind>11</Kind>
     <Name>LOCATION</Name>
-    <XValue>189.583358765</XValue>
-    <YValue>-225.000000000</YValue>
+    <XValue>0.000000000</XValue>
+    <YValue>900.000000000</YValue>
 </Widget>
 <Widget>
     <Kind>21</Kind>
     <Name>DIRECTION</Name>
-    <Value>1.738692403</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EYE_HEIGHT</Name>
-    <Value>103.125000000</Value>
+    <Value>120.000000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
@@ -52,27 +52,27 @@
 <Widget>
     <Kind>4</Kind>
     <Name>POS_X</Name>
-    <Value>270.833251953</Value>
+    <Value>-604.166625977</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POS_Y</Name>
-    <Value>479.166748047</Value>
+    <Value>1187.500000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POS_Z</Name>
-    <Value>-687.500000000</Value>
+    <Value>83.333251953</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ORI_X</Name>
-    <Value>-16.875000000</Value>
+    <Value>-99.375000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ORI_Y</Name>
-    <Value>78.750000000</Value>
+    <Value>-180.000000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

@@ -6,7 +6,6 @@
 
 #include "ofxStateMachine.h"
 #include "ofxOculusDK2.h"
-#include "ofxPostGlitch.h"
 #include "ofxFPSCamera.h"
 #include "ofxOsc.h"
 #include "ofxUI.h"
@@ -22,9 +21,6 @@ class ofApp : public ofBaseApp
     // camera
     ofxOculusDK2 mOculus;
     ofxFPSCamera mFPSCam;
-    
-    // post glitch
-    ofxPostGlitch mGlitch;
     
     // osc
     ofxOscReceiver mReceiver;
@@ -63,6 +59,7 @@ public:
         ofSetFrameRate(60);
         ofSetVerticalSync(true);
         ofSetCircleResolution(64);
+        //ofSetLogLevel( OF_LOG_VERBOSE );
         
         //----------
         // dump key assigne settings
@@ -87,7 +84,6 @@ public:
         mEyeHeight = 30;
         mCollidedItem = -1;
         
-        ofSetLogLevel( OF_LOG_VERBOSE );
         //----------
         // setup stages
         //----------
@@ -114,14 +110,6 @@ public:
         // get file items
         //----------
         getFinderItems(FINDER_ITEM_LIST, mStage.getSharedData().file_items);
-        
-        //----------
-        // setup shared data
-        //----------
-        mStage.getSharedData().desktop_width  = 0;
-        mStage.getSharedData().desktop_height = 0;
-        mStage.getSharedData().loc_x = 0;
-        mStage.getSharedData().loc_y = 0;
         
         
         //----------
@@ -150,8 +138,8 @@ public:
         gui->addSlider("STEER", -1.0, 1.0, &mrBikeSteer);
         gui->addSlider("SPEED", 0.0, 4.0, &mrBikeSpeed);
         gui->add2DPad("LOCATION",
-                      ofVec2f(-(DESKTOP_WIDTH*0.5), DESKTOP_WIDTH*0.5),
-                      ofVec2f(-(DESKTOP_HEIGHT*0.5), DESKTOP_HEIGHT*0.5), &mrBikeLocation);
+                      ofVec2f(0, 0),
+                      ofVec2f(DESKTOP_WIDTH, DESKTOP_HEIGHT), &mrBikeLocation);
         gui->addRotarySlider("DIRECTION", 0.0, TWO_PI, &mrBikeDirection);
         gui->addSlider("EYE_HEIGHT", 0, 120, &mEyeHeight);
         
@@ -173,11 +161,6 @@ public:
         {
             mGui[i]->loadSettings("settings_" + ofToString(i) + ".xml");
         }
-        
-        //----------
-        // setup post glitch
-        //----------
-        mGlitch.setup(&mOculus.getRenderTarget(), "postglitch");
         
     }
     
@@ -227,11 +210,11 @@ public:
                 {
                     mrBikeSpeed = m.getArgAsFloat(0);
                 }
-                if (m.getAddress() == "/dsng2/ctl/st")
+                if (m.getAddress() == "/dsng2/ctl/st") // ハンドル角 (-1.0 〜 1.0), float
                 {
                     mrBikeSteer = m.getArgAsFloat(0);
                 }
-                if (m.getAddress() == "/dsng2/ctl/dir")
+                if (m.getAddress() == "/dsng2/ctl/dir") // 方角 0-360, float
                 {
                     mrBikeDirection = m.getArgAsFloat(0);
                 }
@@ -251,12 +234,6 @@ public:
         }
         
         //----------
-        // update shared data
-        //----------
-        mStage.getSharedData().loc_x = mrBikeLocation.x;
-        mStage.getSharedData().loc_x = mrBikeLocation.y;
-        
-        //----------
         // update camera
         //----------
         if (bManCamMode)
@@ -271,14 +248,11 @@ public:
                 mrBikeLocation.set(cur.x, cur.z);
                 mrBikeDirection = ofDegToRad(mFPSCam.getOrientationEuler().y - 180.0);
             }
-            else if (mCtlMode == REMOTE_BIKE) {
+            else if (mCtlMode == REMOTE_BIKE)
+            {
                 mFPSCam.setPosition(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y);
                 ofVec3f rot = mFPSCam.getOrientationEuler();
-                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 35, rot.z)); //TODO: fix direction
-                
-                // test
-//                float addy = ofMap(ofGetMouseY(), 0, ofGetHeight(), -1, 1, true);
-//                mFPSCam.setOrientation(ofVec3f(rot.x -= addy, ofRadToDeg(-mrBikeDirection) - 90.0, rot.z));
+                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 90, rot.z));
             }
         }
         
@@ -348,7 +322,6 @@ public:
             mOculus.beginRightEye();
             mStage.draw();
             mOculus.endRightEye();
-            mGlitch.generateFx();
             mOculus.draw();
             glDisable(GL_DEPTH_TEST);
         } else {
@@ -373,7 +346,7 @@ public:
             stringstream s;
             s << ofxKeyDoc::getDoc() << endl;
             s << "file items" <<  endl;
-            for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->mPos << " " << mStage.getSharedData().file_items[i]->mType << endl;
+            for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->getPos() << endl;
             s << "collision: " << mCollidedItem << endl;
             ofSetColor(255);
             ofDrawBitmapString(s.str(), mGui[0]->getRect()->getMaxX() + 20, mGui[0]->getRect()->getMinY() + 10);
@@ -396,9 +369,6 @@ public:
             case 'H': bOculusView = !bOculusView; break; /// toggle oculus view/normal view
             case 'D': bDebug = !bDebug; mGui[0]->setVisible(bDebug); break; /// toggle debug mode
             case 'C': bManCamMode = !bManCamMode; break; /// toggle manual camera
-                
-            // test
-            case '1': mGlitch.setFxTo("convergence", 0.5); break;
         }
     }
     
@@ -452,20 +422,14 @@ public:
                 {
                     vector<string> words = ofSplitString(line, " ");
                     vector<string> filename = ofSplitString(words[2], ".");
-                    fileItemType type;
-                    if (filename.back() == "aif") type = FILE_ITEM_SOUND;
-                    if (filename.back() == "txt") type = FILE_ITEM_TEXT;
-                    if (filename.back() == "mov") type = FILE_ITEM_MOVIE;
                     
                     float x = ofToFloat(words[3]);
                     float y = ofToFloat(words[4]);
-                    x -= DESKTOP_WIDTH*0.5;
-                    y -= DESKTOP_HEIGHT*0.5;
-                    x = abs(x);
-                    y = abs(y);
-                    x *= 2;
-                    y *= 2;
-                    file_items.push_back(new FileItem(ofVec2f(x, y), type, words[2]));
+                    ofVec2f pos(x, y);
+
+                    if (filename.back() == "aif") file_items.push_back(new SoundFile(pos, words[2]));
+                    if (filename.back() == "txt") file_items.push_back(new TextFile(pos, words[2]));
+                    //if (filename.back() == "mov") //TODO: make movie file
                 }
             }
         } // load end
@@ -473,7 +437,7 @@ public:
         // debug info
         ofLogNotice() << "FinderItems size:" << file_items.size();
         for (int i=0; i<file_items.size(); i++) {
-            ofLogNotice() << "item[" << i << "] " << file_items[i]->mPos.x << ":" << file_items[i]->mPos.y;
+            ofLogNotice() << "item[" << i << "] " << file_items[i]->getPos().x << ":" << file_items[i]->getPos().y;
         }
     }
     

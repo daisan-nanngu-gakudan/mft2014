@@ -101,7 +101,7 @@ public:
         ofRotate(90, 0, 0, 0);
         ofNoFill();
         ofSetPlaneResolution(30, 30);
-        ofDrawPlane(0, 0, DESKTOP_WIDTH*2, DESKTOP_HEIGHT*2);
+        ofDrawPlane(0, 0, DESKTOP_WIDTH, DESKTOP_HEIGHT);
         ofPopMatrix();
     }
     
@@ -110,7 +110,8 @@ public:
         ofPushMatrix();
         ofRotate(90, 0, 0, 0);
         ofFill();
-        mDesktopImage.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
+//        mDesktopImage.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH, DESKTOP_HEIGHT);
+        mDesktopImage.draw(0, 0, DESKTOP_WIDTH, DESKTOP_HEIGHT);
         ofPopMatrix();
     }
     
@@ -127,7 +128,7 @@ public:
 //        ofDrawPlane(0, 0, DESKTOP_WIDTH*2, DESKTOP_HEIGHT*2);
 //        ofRect(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
         
-        tex.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
+        tex.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 1.5, DESKTOP_HEIGHT * 1.5);
         ofPopMatrix();
     }
 };

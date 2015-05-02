@@ -63,19 +63,20 @@ void ofApp::draw(){
     setupSpaces(); // 座標系
     showGuide(); // ガイド
 
-    // Field
+    // Field //
     desktop.draw();
     
-    // FinderItems
+    // FinderItems //
     ofPushStyle();
-    ofSetColor(188);
+    ofSetColor(COLOR_FINDERITEM);
+    
     for (int i=0; i<items.size(); i++){
-        items[i].draw();
-        items[i].drawInfo();
+        items[i].draw();        // アイコン
+//      items[i].drawInfo();    // 座標(文字)
     }
     ofPopStyle();
     
-    // Bike
+    // Bike //
 	bike.report();
 	bike.draw();
 
@@ -87,7 +88,6 @@ void ofApp::draw(){
     ofSetColor(255);
     ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
     
-
     // debug
     ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
 }

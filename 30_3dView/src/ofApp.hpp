@@ -10,7 +10,7 @@
 #include "ofxFPSCamera.h"
 #include "ofxOsc.h"
 #include "ofxUI.h"
-#include "ofxKeyPressedDoxygen.h"
+#include "ofxKeyDoc.h"
 
 #include "MyDesktop.hpp"
 
@@ -67,8 +67,8 @@ public:
         //----------
         // dump key assigne settings
         //----------
-        ofxKeyPressedDoxygen::read(__FILE__);
-        ofxKeyPressedDoxygen::saveDoc();
+        ofxKeyDoc::read(__FILE__);
+        ofxKeyDoc::saveDoc();
         
         //----------
         // setup osc
@@ -371,7 +371,7 @@ public:
         if (bDebug)
         {
             stringstream s;
-            s << ofxKeyPressedDoxygen::getDoc() << endl;
+            s << ofxKeyDoc::getDoc() << endl;
             s << "file items" <<  endl;
             for (int i = 0; i < mStage.getSharedData().file_items.size(); ++i) s << i << " " << mStage.getSharedData().file_items[i]->mPos << " " << mStage.getSharedData().file_items[i]->mType << endl;
             s << "collision: " << mCollidedItem << endl;

@@ -21,61 +21,61 @@
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>0.000000000</Value>
+    <Value>0.927083373</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPEED</Name>
-    <Value>2.200000048</Value>
+    <Value>0.000000000</Value>
 </Widget>
 <Widget>
     <Kind>11</Kind>
     <Name>LOCATION</Name>
-    <XValue>-658.841552734</XValue>
-    <YValue>-211.941848755</YValue>
+    <XValue>189.583358765</XValue>
+    <YValue>-225.000000000</YValue>
 </Widget>
 <Widget>
     <Kind>21</Kind>
     <Name>DIRECTION</Name>
-    <Value>5.921806812</Value>
+    <Value>1.738692403</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>EYE_HEIGHT</Name>
-    <Value>65.000000000</Value>
+    <Value>103.125000000</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>MANUAL_CAMERA</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POS_X</Name>
-    <Value>-62.500000000</Value>
+    <Value>270.833251953</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POS_Y</Name>
-    <Value>1125.000000000</Value>
+    <Value>479.166748047</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>POS_Z</Name>
-    <Value>687.500000000</Value>
+    <Value>-687.500000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ORI_X</Name>
-    <Value>-75.000000000</Value>
+    <Value>-16.875000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ORI_Y</Name>
-    <Value>15.000007629</Value>
+    <Value>78.750000000</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>ORI_Z</Name>
-    <Value>24.374992371</Value>
+    <Value>-7.500003815</Value>
 </Widget>

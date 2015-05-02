@@ -145,7 +145,6 @@
 		914C802C1A172B5C00F14971 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		914C80481A172C2C00F14971 /* ofxFPSCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFPSCamera.cpp; sourceTree = "<group>"; };
 		914C80491A172C2C00F14971 /* ofxFPSCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFPSCamera.h; sourceTree = "<group>"; };
-		914C80891A172FD600F14971 /* ofxKeyPressedDoxygen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxKeyPressedDoxygen.h; sourceTree = "<group>"; };
 		9163930C1A1FB17F00DD8401 /* ofxUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUI.h; sourceTree = "<group>"; };
 		9163930D1A1FB17F00DD8401 /* ofxUI2DGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUI2DGraph.cpp; sourceTree = "<group>"; };
 		9163930E1A1FB17F00DD8401 /* ofxUI2DGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUI2DGraph.h; sourceTree = "<group>"; };
@@ -276,6 +275,7 @@
 		919D234C1A187B3200956495 /* ofxOscReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscReceiver.h; sourceTree = "<group>"; };
 		919D234D1A187B3200956495 /* ofxOscSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscSender.cpp; sourceTree = "<group>"; };
 		919D234E1A187B3200956495 /* ofxOscSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscSender.h; sourceTree = "<group>"; };
+		91AD785F1AF49F6E00B596AF /* ofxKeyDoc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxKeyDoc.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -421,23 +421,6 @@
 			children = (
 				914C80481A172C2C00F14971 /* ofxFPSCamera.cpp */,
 				914C80491A172C2C00F14971 /* ofxFPSCamera.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		914C80721A172FD600F14971 /* ofxKeyPressedDoxygen */ = {
-			isa = PBXGroup;
-			children = (
-				914C80881A172FD600F14971 /* src */,
-			);
-			name = ofxKeyPressedDoxygen;
-			path = ../../../addons/ofxKeyPressedDoxygen;
-			sourceTree = "<group>";
-		};
-		914C80881A172FD600F14971 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				914C80891A172FD600F14971 /* ofxKeyPressedDoxygen.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -675,13 +658,30 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		91AD78461AF49F6E00B596AF /* ofxKeyDoc */ = {
+			isa = PBXGroup;
+			children = (
+				91AD785E1AF49F6E00B596AF /* src */,
+			);
+			name = ofxKeyDoc;
+			path = ../../../addons/ofxKeyDoc;
+			sourceTree = "<group>";
+		};
+		91AD785E1AF49F6E00B596AF /* src */ = {
+			isa = PBXGroup;
+			children = (
+				91AD785F1AF49F6E00B596AF /* ofxKeyDoc.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				91AD78461AF49F6E00B596AF /* ofxKeyDoc */,
 				9194324A1A225A9500D9AC7C /* ofxSharedMemory */,
 				916391391A1FB17C00DD8401 /* ofxUI */,
 				919D23241A187B3200956495 /* ofxOsc */,
-				914C80721A172FD600F14971 /* ofxKeyPressedDoxygen */,
 				914C80311A172C2C00F14971 /* ofxFPSCamera */,
 				914C80241A172B5C00F14971 /* ofxXmlSettings */,
 				914C7FD31A1727C400F14971 /* ofxPostGlitch */,
@@ -972,6 +972,7 @@
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/osc\"",
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/ip/posix\"",
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/ip/win32\"",
+					../../../addons/ofxKeyDoc/src,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -1016,6 +1017,7 @@
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/osc\"",
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/ip/posix\"",
 					"\"$(SRCROOT)/../../../addons/ofxOsc/libs/oscpack/src/ip/win32\"",
+					../../../addons/ofxKeyDoc/src,
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CPLUSPLUSFLAGS = (

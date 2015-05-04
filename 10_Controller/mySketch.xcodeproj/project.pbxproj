@@ -27,7 +27,6 @@
 		23C2081F1A0F4C0000C1440B /* FinderItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C2081D1A0F4C0000C1440B /* FinderItem.cpp */; };
 		23C208221A0F565300C1440B /* Desktop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C208201A0F565300C1440B /* Desktop.cpp */; };
 		23C8F97619EC40CC00143BC6 /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F97419EC40CC00143BC6 /* Bike.cpp */; };
-		23C8F98919F413BD00143BC6 /* ofxColorScheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F98719F413BD00143BC6 /* ofxColorScheme.cpp */; };
 		23C8F98C19F4170D00143BC6 /* Helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F98A19F4170D00143BC6 /* Helpers.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -125,8 +124,6 @@
 		23C8F97419EC40CC00143BC6 /* Bike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bike.cpp; sourceTree = "<group>"; };
 		23C8F97519EC40CC00143BC6 /* Bike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bike.h; sourceTree = "<group>"; };
 		23C8F97819F2455900143BC6 /* appConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = appConst.h; sourceTree = "<group>"; };
-		23C8F98719F413BD00143BC6 /* ofxColorScheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxColorScheme.cpp; sourceTree = "<group>"; };
-		23C8F98819F413BD00143BC6 /* ofxColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxColorScheme.h; sourceTree = "<group>"; };
 		23C8F98A19F4170D00143BC6 /* Helpers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Helpers.cpp; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -285,21 +282,10 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		23C8F98619F413BD00143BC6 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				23C8F98719F413BD00143BC6 /* ofxColorScheme.cpp */,
-				23C8F98819F413BD00143BC6 /* ofxColorScheme.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxColorScheme/src;
-			sourceTree = "<group>";
-		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
 				231196EB1A1792C0006A67FC /* ofxOsc */,
-				23C8F98619F413BD00143BC6 /* src */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -489,7 +475,6 @@
 				2311971C1A1792C0006A67FC /* OscPrintReceivedElements.cpp in Sources */,
 				231197181A1792C0006A67FC /* UdpSocket.cpp in Sources */,
 				2311971B1A1792C0006A67FC /* OscOutboundPacketStream.cpp in Sources */,
-				23C8F98919F413BD00143BC6 /* ofxColorScheme.cpp in Sources */,
 				23C8F97619EC40CC00143BC6 /* Bike.cpp in Sources */,
 				23C208221A0F565300C1440B /* Desktop.cpp in Sources */,
 				2311971F1A1792C0006A67FC /* ofxOscBundle.cpp in Sources */,
@@ -531,6 +516,7 @@
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
@@ -573,6 +559,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(OF_CORE_HEADERS)",
+					"../../../addons/ofxOsc/**",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",

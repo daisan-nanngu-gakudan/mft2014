@@ -3,6 +3,8 @@
 // アプリケーションのウィンドウサイズ(ピクセル)
 static int winSize[2] = {600, 800};
 
+// デスクトップ領域のサイズ(ピクセル)
+static ofVec2f desktopSize = ofVec2f(1400, 900);
 
 // メッセージ送信間隔(ミリ秒) [333.3]
 //static float sendInterval = 3000.0;
@@ -40,7 +42,6 @@ static float sendInterval = 16.67;
 #define FRICTION 0.9960
 
 // drawings
-//#define DRAW_SIZE_FINDERITEM_R 20  // Finder項目
 #define DRAW_SIZE_FINDERITEM_R 10  // Finder項目
 
 //
@@ -48,11 +49,8 @@ static float sendInterval = 16.67;
 //
 static ofColor COLOR_BIKE = ofColor(212, 0, 0);
 static ofColor COLOR_TRACK = ofColor(212, 188, 0);
-
 static ofColor COLOR_DEBUGINFO = ofColor(255, 255, 255);
-
 static ofColor COLOR_GUIDE_X = ofColor(188, 0, 0);
 static ofColor COLOR_GUIDE_Y = ofColor(0, 188, 0);
 static ofColor COLOR_BACKGROUND = ofColor(128, 128, 128);
-
 static ofColor COLOR_FINDERITEM = ofColor(166, 198, 220);

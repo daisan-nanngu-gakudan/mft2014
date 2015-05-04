@@ -25,7 +25,7 @@ void ofApp::keyPressed(int key){
 				break;
 
 			// モード制御
-			case ' ': // アニメーション
+			case ' ': // アニメーション(bikeのupdate)
 				bAnimate = !bAnimate;
 				break;
 			case 'a': // 原点から再スタート
@@ -35,6 +35,9 @@ void ofApp::keyPressed(int key){
 				break;
 			case 's':	// OSC送信のON/OFF
 				bSendMode = !bSendMode;
+				break;
+			case 'f':
+				ofToggleFullscreen();
 				break;
 			case '1': // ハンドル角のリセット
 				bike.resetHandle();
@@ -47,8 +50,7 @@ void ofApp::keyPressed(int key){
 				sendItems();
 				break;
 			case '?':
-				// bShowMenu = !bShowMenu;
-				ofToggleFullscreen();
+				bShowMenu = !bShowMenu;
 				break;
 			default:
 				break;

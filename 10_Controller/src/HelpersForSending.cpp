@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 // setupSender
-// - クライアントとの通信系を構築します。
+// - クライアントとの通信系を構築します
 // - Note: 宛先は固定です。
 
 void ofApp::setupSender(bool flag){
@@ -11,21 +11,13 @@ void ofApp::setupSender(bool flag){
 	bSendMode = flag;
 	_prevSendTime = ofGetElapsedTimeMillis();
     
-	if (!bSendMode) {
-		// 送信オフ
-		cout << "setupSender....NO --- No use clients." << endl;
-		return;
-	} else {
-		// 送信オン
-		cout << "setupSender...YES" << endl;
-		
-		senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
-		senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
-		senders[2].setup(S_HOST_PC2,   S_PORT_3); // 3D app
+	if (!bSendMode) { return; } // 送信モードOFFの場合、処理を抜ける
+	
+	senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
+	senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
+	senders[2].setup(S_HOST_PC2,   S_PORT_3); // 3D app
 
-		// TODO : 接続時の例外処理
-		
-	}
+	// TODO : 接続時の例外処理
 }
 
 //--------------------------------------------------------------
@@ -38,12 +30,11 @@ void ofApp::updateSender(){
 	// 送信モードかつ、送信対象メッセージありの時のみ送信
 	if (bSendMode && bNeedSending) {
         
-		// 送信タイミングの調整。
+		// 送信タイミングの調整
 		// 所定インターバルを経過していれば送信する。
 		if (ofGetElapsedTimeMillis() > _prevSendTime + sendInterval ){
 			_prevSendTime = ofGetElapsedTimeMillis();
 
-			cout << "send!" << endl;
 			send();
 		}
 	}
@@ -56,11 +47,11 @@ void ofApp::updateSender(){
 // - TODO: OSCバンドルするべき？
 
 void ofApp::send(){
-		
+
 	if (!bSendMode) {
 		return;
 	}
-
+	
 	// メッセージ作成
 	ofxOscMessage m0, m1, m2, m3, m4, m5, m6;
 	m0.setAddress("/dsng2/ctl/FRAMEINFO"); // 送信回次 int, 時刻 float
@@ -90,6 +81,11 @@ void ofApp::send(){
 		senders[i].sendMessage(m5);
 		senders[i].sendMessage(m6);
 	}
+	
+#ifdef DEBUG
+	cout << "send!" << endl;
+#endif
+	
 }
 
 // FinderItem情報の送信

@@ -3,6 +3,9 @@
 #include "ofMain.h"
 #include "appConst.h"
 
+//
+// 自転車
+//
 class Bike {
 private:
 	
@@ -10,7 +13,7 @@ public:
 	float _speed;
 	float _steer;
 	float _direction;   //  as radian
-	ofVec2f _location;  // is this here or other Class?
+	ofVec2f _location;
 	list<ofVec2f> _locHist;
     
 	ofVec2f _cropBegin;

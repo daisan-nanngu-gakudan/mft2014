@@ -10,7 +10,7 @@ void Desktop::setup(const ofVec2f size) {
     _p.x = -1 * _size.x/2;
     _p.y = -1 * _size.y/2;
     
-    desctopImage.loadImage("desktop.png");
+    image.loadImage("desktop.png");
 }
 
 //--------------------------------------------------------------
@@ -29,7 +29,7 @@ void Desktop::draw() {
 	ofPushStyle();
 	
 	ofSetColor(255);
-	desctopImage.draw(0, 0, _size.x, _size.y);
+	image.draw(0, 0, _size.x, _size.y);
     
 	ofFill();
     

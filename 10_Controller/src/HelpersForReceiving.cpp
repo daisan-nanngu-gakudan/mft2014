@@ -2,23 +2,25 @@
 
 //--------------------------------------------------------------
 // setupReceiver
-// - 上位のアプリケーションからの接続をリスン開始します。
+// 上位アプリケーションからの受信を待ち受け
 
 void ofApp::setupReceiver(bool flag){
 
-    // 受信モードオフであれば、
-    // receiverを初期化せず抜ける。
-    if (!flag) return;
+	// 受信モードオフであれば、何もしない
+	if (!flag) return;
 
-	cout << "listening on [" << L_PORT << "]" << endl;
 	receiver.setup(L_PORT);
-    
+
+#if DEBUG
+	cout << "listening on [" << L_PORT << "]" << endl;
+#endif
+
 }
 
 //--------------------------------------------------------------
 // updateReceiver
-// - 上位アプリケーションからのメッセージを受信します。
-// - 受信した内容から、bike モデルに 最新の速さとハンドル角を設定します。
+// - 上位アプリケーションからのメッセージを受信
+// - bike モデルに 最新の速さとハンドル角を設定
 
 // Note: 受信メッセージの例
 //      /pedal              -- ※ 1回転するごとに bang
@@ -30,57 +32,52 @@ void ofApp::setupReceiver(bool flag){
 //          $oscsend localhost 8001 /steerAngle f 0.1111
 //          $oscsend localhost 8001 /steerReset
 //
-//
-
 void ofApp::updateReceiver(){
     
 	// hide old messages
 	for(int i = 0; i < NUM_MSG_STRINGS; i++){
-		if(timers[i] < ofGetElapsedTimef()){
-			msg_strings[i] = "";
-		}
+		if(timers[i] < ofGetElapsedTimef()){ msg_strings[i] = ""; }
 	}
-    
+  
+  // メッセージのハンドリング
 	while (receiver.hasWaitingMessages()) {
-        
+
 		ofxOscMessage m;
 		receiver.getNextMessage(&m);
         
-        // pedal, steer
-        // TODO : bike モデルへの取り込み
-        // TODO : switch 文にする
-        if (m.getAddress() == OSCA_SENSOR_PEDAL) {
+		if (m.getAddress() == OSCA_SENSOR_PEDAL) {
+
+			bike.pedal();
+
+#ifdef DEBUG
+			cout  << " received PEDAL" << endl;
+#endif
+			
+		} else if (m.getAddress() == OSCA_SENSOR_STEER) {
             
-            cout  << " received PEDAL" << endl;
-            
-            // モデルの更新
-            // TODO: チューニング
-            bike.pedal();
-            
-        } else if (m.getAddress() == OSCA_SENSOR_STEER) {
-            
-            float normedSteer = m.getArgAsFloat(0);
-            cout  << " received STEER[" << normedSteer << "]" << endl;
-            
-            // モデルの更新
-            // TODO: チューニング
-            if ( abs(normedSteer) <= 1.0 ) {
-                bike.setHandle(normedSteer);
-            }
-            
-        } else if (m.getAddress() == OSCA_SENSOR_STEER_RESET) {
-            
-            cout  << " received STEER_RESET" << endl;
-            
-            // モデルの更新
-            bike.setHandle(0L);   
-        }
-    }
+			float normedSteer = m.getArgAsFloat(0);
+
+			if ( abs(normedSteer) <= 1.0 ) {
+				bike.setHandle(normedSteer);
+			}
+			
+#ifdef DEBUG
+			cout  << " received STEER[" << normedSteer << "]" << endl;
+#endif
+			
+		} else if (m.getAddress() == OSCA_SENSOR_STEER_RESET) {
+			bike.setHandle(0L);
+
+#ifdef DEBUG
+			cout  << " received STEER_RESET" << endl;
+#endif			
+		}
+	}
 }
 
 //--------------------------------------------------------------
 // dumpOSC
-// - OSCメッセージをコンソールに出力するユーティリティ関数です。
+// - OSCメッセージをコンソールに出力するユーティリティ関数
 
 string ofApp::dumpOSC(ofxOscMessage m) {
 	string str = m.getAddress();

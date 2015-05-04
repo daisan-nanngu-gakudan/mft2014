@@ -2,15 +2,14 @@
 
 //--------------------------------------------------------------
 // setupSpaces
-// - 描画時に必要な、座標系の変換をおこないます。
+// - 座標系の変換
 
 void ofApp::setupSpaces(){
-//    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+	
     ofTranslate(0, ofGetHeight(), 0);
     ofRotate(-90);
-    
-//    ofScale(1, 1);
     ofScale(WINDOW_DESKTOPFIELD_RATIO, WINDOW_DESKTOPFIELD_RATIO);
+	
 }
 
 
@@ -29,45 +28,50 @@ void ofApp::showDebug(){
     float sp = b->_speed;
     float st = b->_steer;
     
-    stringstream s1, s2, s3, s4;
+    stringstream s1;
     
     // speed
-    s1 << "speed     :  " << ofToString(sp, 2) << "    ";
-    for (int i = 0 ; i < 40; i++) s1 << (sp * 10 > i ? '*' : '-') ;
-    
+		s1 << "speed     :  " << ofToString(sp, 2) << "    ";
+		for (int i = 0 ; i < 40; i++) { 
+			s1 << (sp * 10 > i ? '*' : '-') ; 
+		}
+		s1 << endl;
+		
     // steer
     int stRounded = round( ofMap(st, -1, 1, 0, 20) );
-    s2 << "steer     : " << (st < 0 ?'-':' ')
-                        << ofToString(abs(st), 2) << "    ";
-    for (int i = 0 ; i < 21; i++) s2 << (stRounded == i ? '|' : '-') ;
-    
+    s1 << "steer     : " << (st < 0 ?'-':' ')
+                         << ofToString(abs(st), 2) << "    ";
+    for (int i = 0 ; i < 21; i++) {
+				s1 << (stRounded == i ? '|' : '-') ;
+		}
+		s1 << endl;
     
     //  direction (radian)
-    s3 << "direction : " << (b->_direction < 0 ?'-':' ')
+    s1 << "direction : " << (b->_direction < 0 ?'-':' ')
                          << ofToString(abs(b->_direction), 2)  << endl;
-    s4 << "position  : " << (b->_location.x < 0 ?'-':' ')
+    s1 << "position  : " << (b->_location.x < 0 ?'-':' ')
                          <<  ofToString(abs(b->_location.x), 0) << ", "
                          << (b->_location.y < 0 ?'-':' ')
                          <<  ofToString(abs(b->_location.y), 0) << endl;
     
     // desktop size info
-    stringstream s5, s6;
-    s5 << "Desktop Size : " << desktop._size.x << ", "
+    s1 << "Desktop Size : " << desktop._size.x << ", "
                             << desktop._size.y << endl;
-    s6 << "Desktop Pos  : " << desktop._p.x << ", "
+    s1 << "Desktop Pos  : " << desktop._p.x << ", "
                             << desktop._p.y << endl;
-    
-    
+		// collision detect
+		s1 << "collided: "      << ofToString(collidedItem) << endl;
+	
+	
+		ofPushMatrix();
     ofPushStyle();
+		ofTranslate(10, 10);
+		ofSetColor(255,61,145,192); // 背景
+		ofRect(10,10,ofGetWidth()-40,100);
     ofSetColor(COLOR_DEBUGINFO);
-    ofDrawBitmapString(s1.str(), 20, 20);   // speed
-    ofDrawBitmapString(s2.str(), 20, 36);   // steer -1..1.
-    ofDrawBitmapString(s3.str(), 20, 52);   // dir(rad)
-    ofDrawBitmapString(s4.str(), 20, 68);   // position (x,y)
-    
-    ofDrawBitmapString(s5.str(), 20, 84);   // size (x,y)
-    ofDrawBitmapString(s6.str(), 20, 100);  // position (x,y)
+    ofDrawBitmapString(s1.str(), 20, 20);
     ofPopStyle();
+		ofPopMatrix();
     
 }
 

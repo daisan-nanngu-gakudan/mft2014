@@ -3,12 +3,15 @@
 #include "ofMain.h"
 #include "appConst.h"
 
+// 
+// デスクトップ領域
+//
 class Desktop {
     
 public:
 	ofVec2f _size;
 	ofVec2f _p;
-	ofImage desctopImage;
+	ofImage image;
     
 	void setup(const ofVec2f _size);
 	void update();

@@ -16,10 +16,10 @@ void ofApp::setup(){
     bShowMenu = false;
     bNeedSending = true;
     
-    desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
+    desktop.setup(desktopSize);
     
     bike.setup();
-    bike.setupCropSettings(ofVec2f(0,0), ofVec2f(1400, 900));
+    bike.setupCropSettings(ofVec2f(0,0), desktopSize);
     
     // リソースファイル読込
     setupFinderItems();
@@ -66,6 +66,7 @@ void ofApp::draw(){
 	// FinderItems //
 	ofPushStyle();
 	ofSetColor(COLOR_FINDERITEM);
+	
 	for (int i=0; i<items.size(); i++){
 		items[i].draw();        // アイコン
 //		items[i].drawInfo();    // 座標(文字)
@@ -73,21 +74,24 @@ void ofApp::draw(){
 	ofPopStyle();
     
 	// Bike //
-	bike.report();
 	bike.draw();
+	
 	ofPopMatrix();
 	
 	showDebug();
 	if(bShowMenu) showMenu();
 	ofSetColor(255);
-	ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
+//	ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
     
+#ifdef DEBUG
 	// ウィンドウタイトル
 	string str = ofToString(ofGetElapsedTimeMillis());
 	if (bSendMode) {
 		str += "[OSC SendMode ON]";
 	}
 	ofSetWindowTitle(str);
+#endif
+	
 }
 
 void ofApp::colition()

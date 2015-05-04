@@ -16,6 +16,7 @@ void Bike::setup(){
 }
 
 void Bike::update(){
+	
 	// update direction
 	updateDirection();
 
@@ -30,7 +31,11 @@ void Bike::update(){
 	// update history
 	if (_locHist.size() >= 20) _locHist.pop_front();
 	_locHist.push_back(_location);
-	
+
+#ifdef DEBUG
+	report();
+#endif
+
 }
 
 //--------------------------------------------------------------

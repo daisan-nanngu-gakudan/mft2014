@@ -7,28 +7,25 @@
 
 void ofApp::setupSender(bool flag){
     
-    // フラグの初期化
-    bSendMode = flag;
-    _prevSendTime = ofGetElapsedTimeMillis();
+	// フラグの初期化
+	bSendMode = flag;
+	_prevSendTime = ofGetElapsedTimeMillis();
     
-    if (!bSendMode) {
-        // 送信オフ
-        cout << "setupSender....NO --- No use clients." << endl;
-        return;
-    } else {
-        // 送信オン
-        cout << "setupSender...YES" << endl;
-        
-        // ofxOSCの初期化
-        // 宛先は3つ。
-//        senders[0].setup("127.0.0.1", 12011);
-//        senders[1].setup("127.0.0.1", 12022);
-//        senders[2].setup("127.0.0.1", 12033);
-        senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
-        senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
-        senders[2].setup(S_HOST_PC2, S_PORT_3); // 3D app
-        // TODO : 接続時の例外処理
-    }
+	if (!bSendMode) {
+		// 送信オフ
+		cout << "setupSender....NO --- No use clients." << endl;
+		return;
+	} else {
+		// 送信オン
+		cout << "setupSender...YES" << endl;
+		
+		senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
+		senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
+		senders[2].setup(S_HOST_PC2,   S_PORT_3); // 3D app
+
+		// TODO : 接続時の例外処理
+		
+	}
 }
 
 //--------------------------------------------------------------
@@ -38,22 +35,18 @@ void ofApp::setupSender(bool flag){
 
 void ofApp::updateSender(){
     
-    // 送信モードかつ、送信対象メッセージありの時のみ送信
-    if (bSendMode && bNeedSending) {
+	// 送信モードかつ、送信対象メッセージありの時のみ送信
+	if (bSendMode && bNeedSending) {
         
-        // 送信タイミングの調整。
-        // 所定インターバルを経過していれば送信する。
-        if (ofGetElapsedTimeMillis() > _prevSendTime + sendInterval ){
-        
-            _prevSendTime = ofGetElapsedTimeMillis();
+		// 送信タイミングの調整。
+		// 所定インターバルを経過していれば送信する。
+		if (ofGetElapsedTimeMillis() > _prevSendTime + sendInterval ){
+			_prevSendTime = ofGetElapsedTimeMillis();
 
-            cout << "send!" << endl;
-            send();
-            
-            // 後始末 - 1回ぽっきりで送信を抑止する場合はコメントアウトする。
-            // bNeedSending = false;
-        }
-    }
+			cout << "send!" << endl;
+			send();
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -99,20 +92,19 @@ void ofApp::send(){
 	}
 }
 
+// FinderItem情報の送信
 void ofApp::sendItems(){
     
-		ofxOscMessage m0;
-    m0.setAddress("/dsng2/item/clear");
-    senders[2].sendMessage(m0);
+	ofxOscMessage m0;
+	m0.setAddress("/dsng2/item/clear");
+	senders[2].sendMessage(m0);
     
-    for (int i = 0; i < items.size(); ++i){
-        ofxOscMessage m1;
-        m1.setAddress("/dsng2/item/pos");
-        m1.addStringArg(items[i]._name);
-        m1.addFloatArg(items[i]._p.x);
-        m1.addFloatArg(items[i]._p.y);
-        senders[2].sendMessage(m1);
-    }
+	for (int i = 0; i < items.size(); ++i){
+		ofxOscMessage m1;
+		m1.setAddress("/dsng2/item/pos");
+		m1.addStringArg(items[i]._name);
+		m1.addFloatArg(items[i]._p.x);
+		m1.addFloatArg(items[i]._p.y);
+		senders[2].sendMessage(m1);
+	}
 }
-
-

@@ -2,9 +2,6 @@
 #include "ofxOsc.h"
 #include "ofxMouseController.h"
 
-static const float DESKTOP_WIDTH  = 1400;
-static const float DESKTOP_HEIGHT = 900;
-
 ofxOscReceiver mReceiver;
 float mX, mY;
 bool bGotMess;
@@ -27,11 +24,11 @@ void ofApp::update(){
         mReceiver.getNextMessage(&m);
         if (m.getAddress() == "/dsng2/ctl/px")
         {
-            mX = m.getArgAsFloat(0) + (DESKTOP_WIDTH * 0.5);
+            mX = m.getArgAsFloat(0);
         }
         if (m.getAddress() == "/dsng2/ctl/py")
         {
-            mY = m.getArgAsFloat(0) + (DESKTOP_HEIGHT * 0.5);
+            mY = m.getArgAsFloat(0);
         }
         bGotMess = true;
     }

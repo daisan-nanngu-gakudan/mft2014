@@ -43,11 +43,13 @@ void ofApp::keyPressed(int key){
         case 'd': // テスト送信実行
             sendItems();
             break;
-        case '?':
+			case 's':	// OSC送信のON/OFF
+				bSendMode = !bSendMode;
+				break;
+			case '?':
             // bShowMenu = !bShowMenu;
             ofToggleFullscreen();
             break;
-            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
         default:
             break;
     }

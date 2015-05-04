@@ -88,8 +88,12 @@ void ofApp::draw(){
     ofSetColor(255);
     ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
     
-    // debug
-    ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
+    // ウィンドウタイトル
+		string str = ofToString(ofGetElapsedTimeMillis());
+		if (bSendMode) {
+			str += "[OSC SendMode ON]";
+		}
+    ofSetWindowTitle(str);
 }
 
 

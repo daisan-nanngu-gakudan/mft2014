@@ -6,16 +6,16 @@
 class Desktop {
     
 public:
-    ofVec2f _size;
-    ofVec2f _p;
-    ofImage desctopImage;
+	ofVec2f _size;
+	ofVec2f _p;
+	ofImage desctopImage;
     
-    void setup(const ofVec2f _size);
-    void update();
-    void draw();
+	void setup(const ofVec2f _size);
+	void update();
+	void draw();
     
-    ofVec2f getCornerBegin();
-    ofVec2f getCornerEnd();
+	ofVec2f getCornerBegin();
+	ofVec2f getCornerEnd();
     
 private:
     

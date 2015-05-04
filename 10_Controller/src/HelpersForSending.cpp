@@ -15,7 +15,6 @@ void ofApp::setupSender(bool flag){
         // 送信オフ
         cout << "setupSender....NO --- No use clients." << endl;
         return;
-        
     } else {
         // 送信オン
         cout << "setupSender...YES" << endl;

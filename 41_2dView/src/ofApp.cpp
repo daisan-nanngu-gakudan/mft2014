@@ -33,7 +33,7 @@ void ofApp::update(){
         bGotMess = true;
     }
 
-		if (bGotMess) ofxMouseController::setPos(mX, mY);
+    if (bGotMess) ofxMouseController::setPos(mX, mY);
 }
 
 //--------------------------------------------------------------

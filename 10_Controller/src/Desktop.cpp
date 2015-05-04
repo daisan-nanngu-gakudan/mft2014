@@ -26,19 +26,19 @@ void Desktop::update() {
 // 
 //
 void Desktop::draw() {
-    ofPushStyle();
-    ofSetColor(255);
-    desctopImage.draw(0, 0, _size.x, _size.y);
+	ofPushStyle();
+	
+	ofSetColor(255);
+	desctopImage.draw(0, 0, _size.x, _size.y);
     
-    ofFill();
+	ofFill();
     
-    ofNoFill();
-    ofSetColor(0, 188, 0);
-    ofSetRectMode(OF_RECTMODE_CORNER);
-//    ofRect(_p.x, _p.y, _size.x, _size.y);
-    ofRect(0, 0, _size.x, _size.y);
+	ofNoFill();
+	ofSetColor(0, 188, 0);
+	ofSetRectMode(OF_RECTMODE_CORNER);
+	ofRect(0, 0, _size.x, _size.y);
     
-    ofPopStyle();
+	ofPopStyle();
 }
 
 //--------------------------------------------------------------

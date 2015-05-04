@@ -73,14 +73,9 @@ void ofApp::updateReceiver(){
             cout  << " received STEER_RESET" << endl;
             
             // モデルの更新
-            bike.setHandle(0L);
-            
+            bike.setHandle(0L);   
         }
-        
-        // dumpOSC(m);
-        
     }
-    
 }
 
 //--------------------------------------------------------------

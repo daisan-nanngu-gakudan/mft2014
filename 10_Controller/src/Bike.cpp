@@ -9,27 +9,28 @@ void Bike::setup(){
 	_direction = 0.0;
 	_location = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
     
-    // history
-    _locHist.resize(20);
-    _locHist.clear();
-    _locHist.push_back(_location);
+	// history
+	_locHist.resize(20);
+	_locHist.clear();
+	_locHist.push_back(_location);
 }
 
 void Bike::update(){
-    // update direction
-    updateDirection();
+	// update direction
+	updateDirection();
 
 	// update position
-    _location.x += _speed * cos(_direction);
+	_location.x += _speed * cos(_direction);
 	_location.y += _speed * sin(_direction);
     
-    Util::crop(&_location, _cropBegin, _cropEnd);
+	Util::crop(&_location, _cropBegin, _cropEnd);
     
-    _speed *= FRICTION; // PARAM: 減衰
+	_speed *= FRICTION; // PARAM: 減衰
     
-    // update history
-    if (_locHist.size() >= 20) _locHist.pop_front();
-    _locHist.push_back(_location);
+	// update history
+	if (_locHist.size() >= 20) _locHist.pop_front();
+	_locHist.push_back(_location);
+	
 }
 
 //--------------------------------------------------------------
@@ -38,10 +39,10 @@ void Bike::update(){
 // 参照渡しによる、座標の更新を行います
 //
 void Util::crop(ofVec2f *s, const ofVec2f p1, const ofVec2f p2){
-    if (s->x > p2.x) {s->x = p1.x; cout << "croped! 1" << endl;}
-    if (s->x < p1.x) {s->x = p2.x; cout << "croped! 2" << endl;}
-    if (s->y > p2.y) {s->y = p1.y; cout << "croped! 3" << endl;}
-    if (s->y < p1.y) {s->y = p2.y; cout << "croped! 4" << endl;}
+	if (s->x > p2.x) {s->x = p1.x; cout << "croped! 1" << endl;}
+	if (s->x < p1.x) {s->x = p2.x; cout << "croped! 2" << endl;}
+	if (s->y > p2.y) {s->y = p1.y; cout << "croped! 3" << endl;}
+	if (s->y < p1.y) {s->y = p2.y; cout << "croped! 4" << endl;}
 };
 
 //--------------------------------------------------------------
@@ -50,8 +51,8 @@ void Util::crop(ofVec2f *s, const ofVec2f p1, const ofVec2f p2){
 //
 void Bike::updateDirection(){
 	_direction += ofMap(_steer, -1.0, 1.0, -PI/2 *0.1, PI/2 * 0.1);
-    _direction = fmodf(_direction, TWO_PI);
-    if (_direction < 0) _direction += TWO_PI;
+	_direction = fmodf(_direction, TWO_PI);
+	if (_direction < 0) _direction += TWO_PI;
 }
 
 //--------------------------------------------------------------
@@ -64,19 +65,18 @@ void Bike::updateDirection(){
 //
 void Bike::draw(){
     
-    drawTrack(); // 軌跡
+	drawTrack(); // 軌跡
     
-    ofPushStyle();
-
+	ofPushStyle();
 	ofSetColor(COLOR_BIKE); ofNoFill();
 	
-    ofPushMatrix();
-        ofTranslate(_location.x, _location.y);
-        ofCircle(0, 0, 30);
-        ofLine(0, 0, 10*cos(_direction), 10*sin(_direction));
-    ofPopMatrix();
+	ofPushMatrix();
+	ofTranslate(_location.x, _location.y);
+	ofCircle(0, 0, 30);
+	ofLine(0, 0, 10*cos(_direction), 10*sin(_direction));
+	ofPopMatrix();
 
-    ofPopStyle();
+	ofPopStyle();
 }
 
 //
@@ -85,58 +85,42 @@ void Bike::draw(){
 //
 void Bike::drawTrack(){
     
-    ofPushStyle();
-    
-    ofSetColor(COLOR_TRACK); ofNoFill();
+	ofPushStyle();
+	ofSetColor(COLOR_TRACK); ofNoFill();
     
 	list<ofVec2f>::iterator it = _locHist.begin();
-	while(it != _locHist.end())
-	{
-        ofCircle((int)it->x, (int)it->y, 28	);
+	while(it != _locHist.end()) {
+		ofCircle((int)it->x, (int)it->y, 28	);
 		++it;
 	}
     
-    ofPopStyle();
+	ofPopStyle();
 }
 
-//
 // setLocation()
-// 自転車の位置を変更します
-//
-void Bike::setLocation(ofVec2f loc){
-    _location = loc;
-}
+// 自転車の位置を変更
+void Bike::setLocation(ofVec2f loc){ _location = loc;}
 
-//
 // setHandle
 // 自転車のハンドル向きの上書き
-//
-void Bike::setHandle(float st){
-    _steer = st;
-}
+void Bike::setHandle(float st){ _steer = st; }
 
 void Bike::pedal(){
 //	_speed += 0.25;
     _speed +=  1.25;
 }
 
-void Bike::stop(){
-	_speed = 0;
-}
+void Bike::stop(){ _speed = 0; }
+void Bike::resetHandle(){ setHandle(0L); }
 
-void Bike::resetHandle(){
-    setHandle(0L);
-}
-
-//
 // handle()
 // 自転車のハンドルの変更
 //
 void Bike::handle(float normed){
+	
 	_steer += normed;
-    
-    // clipping
-    _steer = ofClamp(_steer, -1.0, 1.0);
+	// clipping
+	_steer = ofClamp(_steer, -1.0, 1.0);
 }
 
 //
@@ -144,20 +128,18 @@ void Bike::handle(float normed){
 // 自転車に関するロギングをおこないます
 //
 void Bike::report(){
-    stringstream s;
-    s   << " sp :" << ofToString(_speed)
-    << " st :" << ofToString(_steer)
-    << " dir:" << ofToString(_direction)
-    << " px :" << ofToString(_location.x)
-    << " py :" << ofToString(_location.y);
-    cout << s.str() << endl;
+	stringstream s;
+	s   << " sp :" << ofToString(_speed)
+			<< " st :" << ofToString(_steer)
+			<< " dir:" << ofToString(_direction)
+			<< " px :" << ofToString(_location.x)
+			<< " py :" << ofToString(_location.y);
+	cout << s.str() << endl;
 }
 
-
 void Bike::setupCropSettings(ofVec2f corner1, ofVec2f corner2){
-    _cropBegin.x = corner1.x;
-    _cropBegin.y = corner1.y;
-    _cropEnd.x   = corner2.x;
-    _cropEnd.y   = corner2.y;
+	_cropBegin.x = corner1.x;
+	_cropBegin.y = corner1.y;
+	_cropEnd.x   = corner2.x;
+	_cropEnd.y   = corner2.y;
 };
-

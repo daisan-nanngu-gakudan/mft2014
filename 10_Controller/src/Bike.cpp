@@ -73,7 +73,7 @@ void Bike::draw(){
 	drawTrack(); // 軌跡
     
 	ofPushStyle();
-	ofSetColor(COLOR_BIKE); ofNoFill();
+	ofSetColor(COLOR_BIKE); ofNoFill(); ofSetLineWidth(4);
 	
 	ofPushMatrix();
 	ofTranslate(_location.x, _location.y);

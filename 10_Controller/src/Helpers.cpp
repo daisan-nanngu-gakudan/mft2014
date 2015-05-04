@@ -33,7 +33,7 @@ void ofApp::showDebug(){
     // speed
 		s1 << "speed     :  " << ofToString(sp, 2) << "    ";
 		for (int i = 0 ; i < 40; i++) { 
-			s1 << (sp * 10 > i ? '*' : '-') ; 
+			s1 << (sp * 10 > i ? '*' : '-');
 		}
 		s1 << endl;
 		
@@ -64,13 +64,13 @@ void ofApp::showDebug(){
 	
 	
 		ofPushMatrix();
-    ofPushStyle();
+		ofPushStyle();
 		ofTranslate(10, 10);
 		ofSetColor(255,61,145,192); // 背景
-		ofRect(10,10,ofGetWidth()-40,100);
-    ofSetColor(COLOR_DEBUGINFO);
-    ofDrawBitmapString(s1.str(), 20, 20);
-    ofPopStyle();
+		ofRect(0,0,ofGetWidth()-40,110);
+		ofSetColor(COLOR_DEBUGINFO);
+		ofDrawBitmapString(s1.str(), 20, 20);
+		ofPopStyle();
 		ofPopMatrix();
     
 }
@@ -81,19 +81,27 @@ void ofApp::showDebug(){
 // 
 
 void ofApp::showMenu(){
-    stringstream s1;
-
-    s1 <<      "KEYS / / / / / / / / / / / / / / / / / / / "
-    << endl << "    SPACE . " "Ticks on/off"
-    << endl << "     DOWN . " "Stop the bike."
-    << endl << "        a . " "Restarts the bike with the origin."
-    << endl << "        1 . " "Reset steer."
-    << endl << "        / . " "OSC test send."
-    << endl << "        ? . " "Show/hide this Menu."
-    << endl << "/ / / / / / / / / / / / / / / / / / / / / / "
-    << endl;
+	
+	stringstream s1;
+	s1 <<      "KEYS / / / / / / / / / / / / / / / / / / / "
+	<< endl << "    SPACE . " "Ticks on/off"
+	<< endl << "     DOWN . " "Stop the bike."
+	<< endl << "        a . " "Restarts the bike with the origin."
+	<< endl << "        1 . " "Reset steer."
+	<< endl << "        / . " "OSC test send."
+	<< endl << "        ? . " "Show/hide this Menu."
+	<< endl << "/ / / / / / / / / / / / / / / / / / / / / / "
+	<< endl;
     
-    ofDrawBitmapString(s1.str(), ofGetWidth()/2-165, 140);
+	ofPushMatrix();
+	ofPushStyle();
+	ofTranslate(ofGetWidth()/2-165, 140);
+	ofSetColor(224, 224, 0, 190);
+	ofRect(0, 0, 400, 130);
+	ofSetColor(COLOR_DEBUGINFO);
+	ofDrawBitmapString(s1.str(), 20, 20);
+	ofPopStyle();
+	ofPopMatrix();
 }
 
 

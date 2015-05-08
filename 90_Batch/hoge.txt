@@ -4,4 +4,3 @@
 /dump 4 23651_loofa_A_007.aif 189 266
 /dump 5 23652_loofa_A_008.aif 369 266
 /dump 6 23653_loofa_A_009.aif 189 394
-exit with cleaning

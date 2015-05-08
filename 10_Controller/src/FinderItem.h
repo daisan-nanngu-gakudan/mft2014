@@ -3,8 +3,9 @@
 #include "ofMain.h"
 #include "appConst.h"
 
-//#define ITEM_SIZE_R 10 // drawing size
-
+// 
+// Finder項目 (ファイルやフォルダ)
+//
 class FinderItem {
     
 public:

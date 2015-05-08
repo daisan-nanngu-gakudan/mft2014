@@ -16,12 +16,10 @@ void ofApp::setup(){
     bShowMenu = false;
     bNeedSending = true;
     
-    desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
+    desktop.setup(desktopSize);
     
     bike.setup();
-//    bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
-
-    bike.setupCropSettings(ofVec2f(0,0), ofVec2f(1400, 900));
+    bike.setupCropSettings(ofVec2f(0,0), desktopSize);
     
     // リソースファイル読込
     setupFinderItems();
@@ -30,7 +28,6 @@ void ofApp::setup(){
     setupReceiver(bUseSensor);
 
     // 通信のセットアップ - 送信部
-//    setupSender(false);
     setupSender(true);
     
     collidedItem = -1;
@@ -58,52 +55,55 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    ofPushMatrix();
+	ofPushMatrix();
     
-    setupSpaces(); // 座標系
-    showGuide(); // ガイド
+	setupSpaces(); // 座標系
+	showGuide(); // ガイド
 
-    // Field //
-    desktop.draw();
+	// Field //
+	desktop.draw();
     
-    // FinderItems //
-    ofPushStyle();
-    ofSetColor(COLOR_FINDERITEM);
+	// FinderItems //
+	ofPushStyle();
+	ofSetColor(COLOR_FINDERITEM);
+	
+	for (int i=0; i<items.size(); i++){
+		items[i].draw();        // アイコン
+//		items[i].drawInfo();    // 座標(文字)
+	}
+	ofPopStyle();
     
-    for (int i=0; i<items.size(); i++){
-        items[i].draw();        // アイコン
-//      items[i].drawInfo();    // 座標(文字)
-    }
-    ofPopStyle();
-    
-    // Bike //
-	bike.report();
+	// Bike //
 	bike.draw();
-
-    ofPopMatrix();
+	
+	ofPopMatrix();
+	
+	showDebug();
+	if(bShowMenu) showMenu();
+	ofSetColor(255);
+//	ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
     
-    showDebug();
-    if(bShowMenu) showMenu();
-    
-    ofSetColor(255);
-    ofDrawBitmapString("collided: " + ofToString(collidedItem), 20, 200);
-    
-    // debug
-    ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
+#ifdef DEBUG
+	// ウィンドウタイトル
+	string str = ofToString(ofGetElapsedTimeMillis());
+	if (bSendMode) {
+		str += "[OSC SendMode ON]";
+	}
+	ofSetWindowTitle(str);
+#endif
+	
 }
-
 
 void ofApp::colition()
 {
-    ofVec2f * bikePos = &bike._location;
-    for (int i=0; i<items.size(); i++){
-        float diff = items[i]._p.distance(*bikePos);
-        if (diff < TH_COLISION)
-        {
-            collidedItem = i ; // 最初に衝突と判定したファイルのIDを保持
-            return;
-        }
-    }
-    collidedItem = -1;
+	ofVec2f * bikePos = &bike._location;
+	for (int i=0; i<items.size(); i++){
+		float diff = items[i]._p.distance(*bikePos);
+		if (diff < TH_COLISION)
+		{
+				collidedItem = i ; // 最初に衝突と判定したファイルのIDを保持
+				return;
+		}
+	}
+	collidedItem = -1;
 }
-

@@ -25,63 +25,63 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-        void colition();
+		void colition();
     
-        // - - - - app - - - - //
+		// - - - - app - - - - //
 
-        // Bike and Field
-        Bike bike;
-        Desktop desktop;
+		// Bike and Field
+		Bike bike;
+		Desktop desktop;
     
-        void showDebug();
-        void showMenu();
-        void showGuide();
-        void setupSpaces();
+		void showDebug();
+		void showMenu();
+		void showGuide();
+		void setupSpaces();
 
-        // Modes, Flags and so on.
-        bool bAnimate;
-        bool bFade;
-        bool bUseSensor;
-        bool bShowMenu;
-        bool bSendMode;
-        bool bNeedSending;  // 送信メッセージあり
+		// Modes, Flags and so on.
+		bool bAnimate;
+		bool bFade;
+		bool bUseSensor;
+		bool bShowMenu;
+		bool bSendMode;
+		bool bNeedSending;  // 送信メッセージあり
     
-        // Finder Items
-        vector<FinderItem> items;
-        int collidedItem; // 衝突中のファイルID
+		// Finder Items
+		vector<FinderItem> items;
+		int collidedItem; // 衝突中のファイルID
     
-        // - - - - oscsend    - - - - //
-        ofxOscSender senders[3];
+		// - - - - oscsend    - - - - //
+		ofxOscSender senders[3];
 
-        void setupSender(bool); // bool で起動要否を切替
-        void updateSender();
-        void send(); // メッセージ送信
-        void sendItems(); // ファイル情報を送信
+		void setupSender(bool); // bool で起動要否を切替
+		void updateSender();
+		void send(); // メッセージ送信
+		void sendItems(); // ファイル情報を送信
 
-        // - - - - oscreceive - - - - //
-        ofxOscReceiver receiver;
-        int current_msg_string;
-        string msg_strings[NUM_MSG_STRINGS];
-        float timers[NUM_MSG_STRINGS];
+		// - - - - oscreceive - - - - //
+		ofxOscReceiver receiver;
+		int current_msg_string;
+		string msg_strings[NUM_MSG_STRINGS];
+		float timers[NUM_MSG_STRINGS];
     
-        void setupReceiver(bool); // bool で起動要否を切替
-        void updateReceiver();
+		void setupReceiver(bool); // bool で起動要否を切替
+		void updateReceiver();
 
     
 private:
-        ofBuffer tBuf;
-        void setupFinderItems();
-        void tBuf2Items();
+		ofBuffer tBuf;
+		void setupFinderItems();
+		void tBuf2Items();
 
-        // メッセージ送信
-        int _sendCount; // メッセージ送信カウンタ
-        float _prevSendTime;    // 前回メッセージ送信時刻(ミリ秒);
+		// メッセージ送信
+		int _sendCount; // メッセージ送信カウンタ
+		float _prevSendTime;    // 前回メッセージ送信時刻(ミリ秒);
     
-        // メッセージ受信
-        string dumpOSC(ofxOscMessage m);
+		// メッセージ受信
+		string dumpOSC(ofxOscMessage m);
 };
 
 
 namespace Util{
-    void crop(ofVec2f* src, const ofVec2f corner1, const ofVec2f corner2);
+		void crop(ofVec2f* src, const ofVec2f corner1, const ofVec2f corner2);
 };

@@ -10,7 +10,7 @@ void Desktop::setup(const ofVec2f size) {
     _p.x = -1 * _size.x/2;
     _p.y = -1 * _size.y/2;
     
-    desctopImage.loadImage("desktop.png");
+    image.loadImage("desktop.png");
 }
 
 //--------------------------------------------------------------
@@ -26,19 +26,19 @@ void Desktop::update() {
 // 
 //
 void Desktop::draw() {
-    ofPushStyle();
-    ofSetColor(255);
-    desctopImage.draw(0, 0, _size.x, _size.y);
+	ofPushStyle();
+	
+	ofSetColor(255);
+	image.draw(0, 0, _size.x, _size.y);
     
-    ofFill();
+	ofFill();
     
-    ofNoFill();
-    ofSetColor(0, 188, 0);
-    ofSetRectMode(OF_RECTMODE_CORNER);
-//    ofRect(_p.x, _p.y, _size.x, _size.y);
-    ofRect(0, 0, _size.x, _size.y);
+	ofNoFill();
+	ofSetColor(0, 188, 0);
+	ofSetRectMode(OF_RECTMODE_CORNER);
+	ofRect(0, 0, _size.x, _size.y);
     
-    ofPopStyle();
+	ofPopStyle();
 }
 
 //--------------------------------------------------------------

@@ -1,9 +1,19 @@
 #pragma once
 
 #include "ofMain.h"
-#include "FileItem.hpp"
-#include "ofxState.h"
 #include "SharedDataReceiver.hpp"
+
+class FileItem;
+
+
+
+
+//++++++++++
+// DEBUG OPTION
+//++++++++++
+#define DUMMY_ICON_MODE
+
+
 
 //==========
 // stage name
@@ -59,7 +69,6 @@ static const string FINDER_ITEM_LIST = "finderItems.txt";
 #define WRAP_OFFSET 0
 
 
-
 class SharedData
 {
 public:
@@ -68,7 +77,7 @@ public:
 };
 
 typedef SharedData shd;
-typedef itg::ofxState<SharedData> BaseStage;
+#define BaseStage itg::ofxState<SharedData>
 typedef vector<FileItem *>::iterator item_it;
 
 #define VALIDE(b) assert(b)

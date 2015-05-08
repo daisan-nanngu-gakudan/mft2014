@@ -11,17 +11,17 @@
 <Widget>
     <Kind>2</Kind>
     <Name>FPS_KEY</Name>
-    <Value>1</Value>
+    <Value>0</Value>
 </Widget>
 <Widget>
     <Kind>2</Kind>
     <Name>REMOTE_BIKE</Name>
-    <Value>0</Value>
+    <Value>1</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>-0.000000075</Value>
+    <Value>0.100000076</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
@@ -37,7 +37,7 @@
 <Widget>
     <Kind>21</Kind>
     <Name>DIRECTION</Name>
-    <Value>0.000000000</Value>
+    <Value>5.089720249</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

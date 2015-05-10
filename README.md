@@ -4,6 +4,7 @@
 エンターテイメントなデモ
 
 初出: 2014.11.23
+
 [MakerFaireTokyo 2014 / 自転車で行くデスクトップの旅2](http://makezine.jp/event/maker2014/taniguchikouheitodaisannnanngugakudann/)
 
 
@@ -24,6 +25,10 @@
 	- OculusLift DK2に最適化されたビュー、およびGUI
 	- サウンドファイルの再生も行う(暫定処置)
 	- 自転車とオブジェクトの接触判定はここ
+	
+- 41_2dView : *二次元デスクトップビュー(代替)*
+	- 40_2dViewの代替
+	- 主コントローラのメッセージによりカーソルを制御
 
 - 80_Camera : *天窓プラグイン*
 	- 30_3dView のプラグイン的に動作するアプリケーション
@@ -44,31 +49,26 @@
 - 40_2dView : *二次元デスクトップビュー*
 	- OSのマウスイベントをハックしてスクリプトからマウスポインタを操作するアプリケーション
 
-- 41_2dView : *二次元デスクトップビュー(代替)*
-	- 40_2dViewの代替。サブディスプレイを利用した時にうまく動かない問題あり。要調整
-
-
 
 #### 2.実行時の構成
 ***
-
-2dViewは出展時に実現していなかったので、10_Controllerのデバッグウィンドウで代用した。
 
 ###### PC1 (tgck/MacBookPro 15/OSX 10.9)
 	In:  USB-Serial
 	Out: Video (Projector)
 
 	Application:
+		90_Batch/_doIt.sh
 		00_Sensor/analyzerSender.maxpat
 		10_Controller/mySketch.xcodeproj	(Video Out)
-
+		41_2dView
 
 ###### PC2 (TatsuyaOGth/MacBookPro 15)
 	Out: Audio
 	Out: Video (OculusLift DK2)
 
 	Application:
-		90_Batch/_doIt.sh (30_3dViewの起動前に1度だけ実行)
+
 		30_3dView/OculusRenderingBasic.xcodeproj	(Audio Out/Video Out)
 		80_Camera/GrabSender.xcodeproj
 
@@ -88,5 +88,11 @@
 ******
 
 ※未記入
+
+#### 5. Releases
+
+- v1.0.0 (2014.11.24) MFT2014版
+
+- v1.1.0 (2015.5.10)  41_2dView, 90_Batch アップデート後のリハーサル版
 
 

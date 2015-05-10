@@ -137,9 +137,7 @@ public:
         gui->addLabel("BIKE_STATUS");
         gui->addSlider("STEER", -1.0, 1.0, &mrBikeSteer);
         gui->addSlider("SPEED", 0.0, 4.0, &mrBikeSpeed);
-        gui->add2DPad("LOCATION",
-                      ofVec2f(0, 0),
-                      ofVec2f(DESKTOP_WIDTH, DESKTOP_HEIGHT), &mrBikeLocation);
+        gui->add2DPad("LOCATION", ofVec2f(0, 0), ofVec2f(DESKTOP_WIDTH, DESKTOP_HEIGHT), &mrBikeLocation);
         gui->addRotarySlider("DIRECTION", 0.0, TWO_PI, &mrBikeDirection);
         gui->addSlider("EYE_HEIGHT", 0, 120, &mEyeHeight);
         
@@ -246,7 +244,7 @@ public:
             {
                 ofVec3f cur = mFPSCam.getPosition();
                 mrBikeLocation.set(cur.x, cur.z);
-                mrBikeDirection = ofDegToRad(mFPSCam.getOrientationEuler().y - 180.0);
+                mrBikeDirection = ofDegToRad(mFPSCam.getOrientationEuler().y) + PI;
             }
             else if (mCtlMode == REMOTE_BIKE)
             {
@@ -264,20 +262,19 @@ public:
         //----------
         // corition files
         //----------
-        item_it it = mStage.getSharedData().file_items.begin();
-        while (it != mStage.getSharedData().file_items.end())
-        {
-            (*it)->draw();
-            ++it;
-        }
+//        item_it it = mStage.getSharedData().file_items.begin();
+//        while (it != mStage.getSharedData().file_items.end())
+//        {
+//            (*it)->draw();
+//            ++it;
+//        }
         
     }
     
     
     void draw()
     {
-        
-        ofBackground(0);
+        ofBackground(0, 0, 0);
         ofSetColor(255);
         
         if(mOculus.isSetup() && bOculusView)
@@ -315,7 +312,6 @@ public:
             // draw main view
             //==========
             ofSetColor(255);
-            glEnable(GL_DEPTH_TEST);
             mOculus.beginLeftEye();
             mStage.draw();
             mOculus.endLeftEye();
@@ -323,7 +319,6 @@ public:
             mStage.draw();
             mOculus.endRightEye();
             mOculus.draw();
-            glDisable(GL_DEPTH_TEST);
         } else {
             mFPSCam.begin();
             mStage.draw();
@@ -409,6 +404,7 @@ public:
     
     void getFinderItems(const string & filename, vector<FileItem *> & file_items)
     {
+
         ofBuffer buffer = ofBufferFromFile(filename);
         if(buffer.size())
         {
@@ -427,12 +423,20 @@ public:
                     float y = ofToFloat(words[4]);
                     ofVec2f pos(x, y);
 
+#ifdef DUMMY_ICON_MODE
+                    
+                    file_items.push_back(new TempIcon(pos, words[2]));
+                    
+#else
+                    
                     if (filename.back() == "aif") file_items.push_back(new SoundFile(pos, words[2]));
                     if (filename.back() == "txt") file_items.push_back(new TextFile(pos, words[2]));
                     //if (filename.back() == "mov") //TODO: make movie file
+
+#endif
                 }
             }
-        } // load end
+        }
         
         // debug info
         ofLogNotice() << "FinderItems size:" << file_items.size();

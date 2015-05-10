@@ -70,7 +70,7 @@ public:
         
         drawStage(1);
         
-        //mMesh.drawVertices();
+//        mMesh.drawVertices();
         
         drawCeilingDisplay();
         
@@ -110,7 +110,6 @@ public:
         ofPushMatrix();
         ofRotate(90, 0, 0, 0);
         ofFill();
-//        mDesktopImage.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH, DESKTOP_HEIGHT);
         mDesktopImage.draw(0, 0, DESKTOP_WIDTH, DESKTOP_HEIGHT);
         ofPopMatrix();
     }
@@ -125,10 +124,7 @@ public:
         ofTranslate(0, 1500, 0);
         ofRotate(90, 0, 0, 0);
         ofFill();
-//        ofDrawPlane(0, 0, DESKTOP_WIDTH*2, DESKTOP_HEIGHT*2);
-//        ofRect(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 2, DESKTOP_HEIGHT * 2);
-        
-        tex.draw(-(DESKTOP_WIDTH*0.5), -(DESKTOP_HEIGHT*0.5), DESKTOP_WIDTH * 1.5, DESKTOP_HEIGHT * 1.5);
+        tex.draw(0, 0, DESKTOP_WIDTH, DESKTOP_HEIGHT);
         ofPopMatrix();
     }
 };

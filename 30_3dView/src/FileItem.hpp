@@ -7,7 +7,7 @@
 
 static const string ICON_IMAGE_PATH_SOUND = "images/icon_sound.png";
 static const string ICON_IMAGE_PATH_TEXT  = "images/icon_text.png";
-static const string ICON_IMAGE_PATH_MOVIE = "images/icon_sound.png"; //TODO: change
+static const string ICON_IMAGE_TEMP_DIR = "images/doticons/";
 static const string ITEM_PATH_ROOT = "items/";
 
 
@@ -31,6 +31,7 @@ public:
     {
         ofPushStyle();
         ofPushMatrix();
+        ofDisableAntiAliasing();
         ofTranslate(mPos.x, 100, mPos.y);
         ofRotate(ofGetElapsedTimef() * 30, 0, 1, 0);
         ofSetRectMode(OF_RECTMODE_CENTER);
@@ -197,6 +198,26 @@ public:
     void drawEvent(float width, float height)
     {
         
+    }
+};
+
+
+
+
+
+class TempIcon : public FileItem
+{
+    
+public:
+    TempIcon(ofVec2f pos, const string & filename)
+    {
+        mPos.set(pos);
+        mFileName = filename;
+        
+        ofDirectory dir;
+        const int n = dir.listDir(ICON_IMAGE_TEMP_DIR);
+        const int select = (int) ofRandom(n);
+        mIconImage.loadImage(dir.getPath(select));
     }
 };
 

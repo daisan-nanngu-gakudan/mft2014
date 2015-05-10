@@ -1,0 +1,19 @@
+## カーソルを拡大する方法
+tgck 2015/5/10
+
+- OSX 10.6/10.9で確認済
+
+#### ワンライナーを使う
+	```bash
+	defaults write com.apple.universalaccess mouseDriverCursorSize -int 4
+	```
+
+	当該の defaults システムにロードする方法が見当たらないので、
+	再ログインで有効化する。
+	
+	*** Finder, Dock, UIServerの再起動しても反映されない
+	
+	
+#### システム環境設定から設定する
+	
+	OSのバージョンにより画面が大幅に変わっているので省略

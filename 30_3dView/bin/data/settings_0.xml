@@ -21,23 +21,23 @@
 <Widget>
     <Kind>4</Kind>
     <Name>STEER</Name>
-    <Value>0.100000076</Value>
+    <Value>0.022222223</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>
     <Name>SPEED</Name>
-    <Value>0.000000000</Value>
+    <Value>0.395193666</Value>
 </Widget>
 <Widget>
     <Kind>11</Kind>
     <Name>LOCATION</Name>
-    <XValue>0.000000000</XValue>
-    <YValue>900.000000000</YValue>
+    <XValue>395.243103027</XValue>
+    <YValue>124.647010803</YValue>
 </Widget>
 <Widget>
     <Kind>21</Kind>
     <Name>DIRECTION</Name>
-    <Value>5.089720249</Value>
+    <Value>6.220350742</Value>
 </Widget>
 <Widget>
     <Kind>4</Kind>

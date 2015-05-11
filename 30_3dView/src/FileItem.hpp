@@ -63,9 +63,9 @@ public:
         mPos.set(pos);
         mFileName = filename;
         
-        assert(mIconImage.loadImage(ICON_IMAGE_PATH_SOUND));
-        assert(mSound.loadSound(ITEM_PATH_ROOT + mFileName));
-        mSound.stop();
+        mIconImage.loadImage(ICON_IMAGE_PATH_SOUND);
+        if (mSound.loadSound(ITEM_PATH_ROOT + mFileName))
+            mSound.stop();
         // mSound.setLoop(OF_LOOP_NONE);
         
         fftSmoothed = new float[8192];

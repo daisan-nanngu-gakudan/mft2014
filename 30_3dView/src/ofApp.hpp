@@ -137,7 +137,7 @@ public:
         gui->addLabel("BIKE_STATUS");
         gui->addSlider("STEER", -1.0, 1.0, &mrBikeSteer);
         gui->addSlider("SPEED", 0.0, 4.0, &mrBikeSpeed);
-        gui->add2DPad("LOCATION", ofVec2f(0, 0), ofVec2f(DESKTOP_WIDTH, DESKTOP_HEIGHT), &mrBikeLocation);
+        gui->add2DPad("LOCATION", ofVec2f(0, DESKTOP_WIDTH), ofVec2f(0, DESKTOP_HEIGHT), &mrBikeLocation);
         gui->addRotarySlider("DIRECTION", 0.0, TWO_PI, &mrBikeDirection);
         gui->addSlider("EYE_HEIGHT", 0, 120, &mEyeHeight);
         
@@ -250,7 +250,7 @@ public:
             {
                 mFPSCam.setPosition(mrBikeLocation.x, mEyeHeight, mrBikeLocation.y);
                 ofVec3f rot = mFPSCam.getOrientationEuler();
-                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection) - 90, rot.z));
+                mFPSCam.setOrientation(ofVec3f(rot.x, ofRadToDeg(-mrBikeDirection), rot.z));
             }
         }
         
